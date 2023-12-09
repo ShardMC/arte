@@ -1,0 +1,4 @@
+name: plugin-template
+version: '${version}'
+main: the.grid.smp.plugintemplate.PluginTemplate
+api-version: '1.20'

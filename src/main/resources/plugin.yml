@@ -1,4 +1,11 @@
-name: plugin-template
+name: arte
 version: '${version}'
-main: the.grid.smp.plugintemplate.PluginTemplate
+main: the.grid.smp.arte.Arte
 api-version: '1.20'
+commands:
+  arte:
+    usage: /arte reload
+depend:
+  - communis
+libraries:
+  - commons-codec:commons-codec:1.16.0

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "the.grid.smp"
-version = "1.0-SNAPSHOT"
+version = "0.1.0"
 
 repositories {
     mavenCentral()

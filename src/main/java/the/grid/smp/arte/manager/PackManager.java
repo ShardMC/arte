@@ -48,7 +48,6 @@ public class PackManager {
                 this.globalPack.collect(namespaces, isWhitelist, pack -> {
                     this.packs.add(pack);
                     this.server.host(pack);
-                    return FileVisitResult.CONTINUE;
                 });
 
                 this.arte.getLogger().info("Finished re-zipping! (Finished in " + (System.currentTimeMillis() - start) + "ms)");

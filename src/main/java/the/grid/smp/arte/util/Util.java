@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public class Util {
 
@@ -24,6 +25,28 @@ public class Util {
 
     public static String getName(Path path) {
         return path.getFileName().toString();
+    }
+
+    public static String[] getName(Path... paths) {
+        String[] names = new String[paths.length];
+
+        for (int i = 0; i < paths.length; i++) {
+            Path path = paths[i];
+
+            if (path == null)
+                continue;
+
+            names[i] = Util.getName(paths[i]);
+        }
+
+        return names;
+    }
+
+    public static String getNameWithoutExtension(Path path) {
+        String name = Util.getName(path);
+
+        int dotIndex = name.lastIndexOf('.');
+        return (dotIndex == -1) ? name : name.substring(0, dotIndex);
     }
 
     public static byte[] hash(InputStream stream) throws IOException {

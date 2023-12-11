@@ -2,6 +2,7 @@ package the.grid.smp.arte.zip;
 
 import the.grid.smp.arte.util.Util;
 
+import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class Zip implements AutoCloseable {
         this.output = output;
         this.scramble = scramble;
 
-        this.zos = new ZipOutputStream(new FileOutputStream(output.toFile()));
+        this.zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(output.toFile()), 16384));
     }
 
     public void add(Path path) throws IOException {
@@ -44,6 +45,12 @@ public class Zip implements AutoCloseable {
 
         if (this.scramble) {
             Scrambler.scramble(entry);
+        }
+    }
+
+    public void add(Path... paths) throws IOException {
+        for (Path path : paths) {
+            this.add(path);
         }
     }
 

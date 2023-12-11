@@ -3,39 +3,33 @@ package the.grid.smp.arte.manager;
 import org.bukkit.entity.Player;
 import the.grid.smp.arte.Arte;
 import the.grid.smp.arte.web.WebServer;
-import the.grid.smp.arte.util.Util;
-import the.grid.smp.arte.zip.Zip;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.Set;
 
 public class PackManager {
-
-    private final Path resourcepack;
-    private final Path generated;
 
     private final Arte arte;
     private final WebServer server;
 
     private final List<ResourcePack> packs = new ArrayList<>();
+    private final GlobalServerPack globalPack;
 
     public PackManager(Arte arte) {
         this.arte = arte;
         this.server = new WebServer();
         this.arte.getLogger().info("Initialized web-server!");
 
-        this.resourcepack = arte.getDataFolder()
+        Path resourcepack = arte.getDataFolder()
                 .toPath().resolve("resourcepack");
 
-        this.generated = arte.getDataFolder()
+        Path generated = arte.getDataFolder()
                 .toPath().resolve("generated");
 
+        this.globalPack = new GlobalServerPack(this.arte.getLogger(), resourcepack, generated);
         this.arte.getServer().getScheduler().runTaskAsynchronously(this.arte, this::reload);
     }
 
@@ -43,59 +37,25 @@ public class PackManager {
         new Thread(() -> {
             try {
                 this.packs.clear();
-                Files.createDirectories(this.resourcepack);
-                Files.createDirectories(this.generated);
+                long start = System.currentTimeMillis();
 
                 this.server.restart(this.arte.config().getPort());
-                this.rezip();
+                this.globalPack.rezip(this.arte.config().getGroups(), this.arte.config().shouldScramble());
 
-                Util.walk(this.generated, (file, attrs) -> {
-                    ResourcePack pack = new ResourcePack(file, this.arte.config().force());
+                Set<String> namespaces = this.arte.config().getNamespaces();
+                boolean isWhitelist = this.arte.config().isWhitelist();
+
+                this.globalPack.collect(namespaces, isWhitelist, pack -> {
                     this.packs.add(pack);
-
                     this.server.host(pack);
                     return FileVisitResult.CONTINUE;
                 });
 
-                this.arte.getLogger().info("Finished re-zipping!");
+                this.arte.getLogger().info("Finished re-zipping! (Finished in " + (System.currentTimeMillis() - start) + "ms)");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }).start();
-    }
-
-    public void rezip() throws IOException {
-        Path assets = this.resourcepack.resolve("assets");
-        Files.createDirectories(assets);
-
-        try (Stream<Path> stream = Files.list(assets)) {
-            stream.forEach(this::tryRezip);
-        }
-    }
-
-    private void tryRezip(Path namespace) {
-        try {
-            this.rezip(namespace);
-        } catch (IOException e) {
-            this.arte.getLogger().severe("Failed to re-zip namespace " + namespace);
-            e.printStackTrace();
-        }
-    }
-
-    private void rezip(Path namespace) throws IOException {
-        this.arte.getLogger().info("Zipping " + Util.getName(namespace));
-
-        try (Zip zip = this.makeZip(namespace)) {
-            zip.add(namespace);
-
-            zip.add(this.resourcepack.resolve("pack.mcmeta"));
-            zip.add(this.resourcepack.resolve("pack.png"));
-        }
-    }
-
-    private Zip makeZip(Path namespace) throws FileNotFoundException {
-        Path name = this.generated.resolve(namespace.getFileName().toString() + ".zip");
-        return new Zip(this.resourcepack, name, this.arte.config().shouldScramble());
     }
 
     public void apply(Player player) {

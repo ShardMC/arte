@@ -27,18 +27,18 @@ public class Scrambler {
         return bytes;
     }
 
-    public static void scramble(ZipEntry var0) {
-        var0.setCrc(0L);
-        var0.setLastAccessTime(time);
-        var0.setCreationTime(time);
-        var0.setLastModifiedTime(time);
+    public static void scramble(ZipEntry entry) {
+        entry.setCrc(0L);
+        entry.setLastAccessTime(time);
+        entry.setCreationTime(time);
+        entry.setLastModifiedTime(time);
 
-        if (var0.getName().toLowerCase().endsWith(".ogg")) {
-            var0.setSize(Scrambler.scramble(9000, 15000));
+        if (entry.getName().toLowerCase().endsWith(".ogg")) {
+            entry.setSize(Scrambler.scramble(9000, 15000));
             return;
         }
 
-        var0.setSize(1337L);
+        entry.setSize(1337L);
     }
 
     @SuppressWarnings("SameParameterValue")

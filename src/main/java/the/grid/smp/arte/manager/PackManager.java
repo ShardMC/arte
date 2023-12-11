@@ -5,6 +5,7 @@ import the.grid.smp.arte.Arte;
 import the.grid.smp.arte.web.WebServer;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,27 +35,27 @@ public class PackManager {
     }
 
     public void reload() {
-        new Thread(() -> {
-            try {
-                this.packs.clear();
-                long start = System.currentTimeMillis();
+        try {
+            this.packs.clear();
+            long start = System.currentTimeMillis();
 
-                this.server.restart(this.arte.config().getPort());
-                this.globalPack.rezip(this.arte.config().getGroups(), this.arte.config().shouldScramble());
+            Files.delete(this.globalPack.getGenerated());
 
-                Set<String> namespaces = this.arte.config().getNamespaces();
-                boolean isWhitelist = this.arte.config().isWhitelist();
+            this.server.restart(this.arte.config().getPort());
+            this.globalPack.rezip(this.arte.config().getGroups(), this.arte.config().shouldScramble());
 
-                this.globalPack.collect(namespaces, isWhitelist, pack -> {
-                    this.packs.add(pack);
-                    this.server.host(pack);
-                });
+            Set<String> namespaces = this.arte.config().getNamespaces();
+            boolean isWhitelist = this.arte.config().isWhitelist();
 
-                this.arte.getLogger().info("Finished re-zipping! (Finished in " + (System.currentTimeMillis() - start) + "ms)");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }).start();
+            this.globalPack.collect(namespaces, isWhitelist, pack -> {
+                this.packs.add(pack);
+                this.server.host(pack);
+            });
+
+            this.arte.getLogger().info("Finished re-zipping! (Finished in " + (System.currentTimeMillis() - start) + "ms)");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void apply(Player player) {

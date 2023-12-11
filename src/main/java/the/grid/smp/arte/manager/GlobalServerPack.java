@@ -118,6 +118,10 @@ public class GlobalServerPack {
         return root;
     }
 
+    public Path getGenerated() {
+        return generated;
+    }
+
     public Path getAssets() {
         return this.root.resolve("assets");
     }

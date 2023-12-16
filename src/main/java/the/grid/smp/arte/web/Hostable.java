@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface Hostable {
     void host(WebServer server) throws IOException;
-    String getAddress();
+    String getName();
 }

@@ -5,7 +5,6 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.bukkit.Bukkit;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -15,10 +14,6 @@ import java.nio.file.Path;
 public class WebServer {
     private boolean enabled = false;
     private HttpServer server;
-
-    public WebServer() {
-
-    }
 
     public void start(int port) {
         // Server is already enabled stop code
@@ -37,7 +32,7 @@ public class WebServer {
     }
 
     public String getAddress(Hostable hostable) {
-        String address = hostable.getAddress();
+        String address = hostable.getName();
 
         if (!address.startsWith("/"))
             address = "/" + address;
@@ -53,15 +48,7 @@ public class WebServer {
         if (!path.startsWith("/"))
             path = "/" + path;
 
-        try {
-            this.server.removeContext(path);
-        } catch (Exception ignored) { }
-
         this.server.createContext(path, new FileHandler(file));
-    }
-
-    public void host(File file, String path) throws IOException {
-        this.host(file.toPath(), path);
     }
 
     public void stop() {
@@ -81,7 +68,7 @@ public class WebServer {
 
         private final byte[] data;
 
-        private FileHandler(byte[] data) {
+        public FileHandler(byte[] data) {
             this.data = data;
         }
 

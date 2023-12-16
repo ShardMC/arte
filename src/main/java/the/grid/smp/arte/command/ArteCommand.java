@@ -5,8 +5,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitScheduler;
 import the.grid.smp.arte.Arte;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ArteCommand implements TabExecutor {
@@ -26,19 +28,35 @@ public class ArteCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        BukkitScheduler scheduler = this.arte.getServer().getScheduler();
+
         if (args[0].equals("reload")) {
             this.arte.config().reload();
 
-            this.arte.getServer().getScheduler().runTaskAsynchronously(this.arte, () -> {
+            new Thread(() -> {
                 this.arte.getPackManager().reload();
 
-                this.arte.getServer().getScheduler().runTask(this.arte, () -> {
+                scheduler.runTask(this.arte, () -> {
                     sender.sendMessage("[Arte] Done!");
 
                     for (Player player : this.arte.getServer().getOnlinePlayers()) {
                         this.arte.getPackManager().apply(player);
                     }
                 });
+            }).start();
+        }
+
+        if (args[0].equals("clean")) {
+            new Thread(() -> {
+                try {
+                    this.arte.getPackManager().getZipper().clear();
+
+                    scheduler.runTask(this.arte, () ->
+                            sender.sendMessage("[Arte] Done!")
+                    );
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
         }
 
@@ -48,7 +66,7 @@ public class ArteCommand implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1)
-            return List.of("reload");
+            return List.of("reload", "clear");
 
         return List.of();
     }

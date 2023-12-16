@@ -1,69 +1,82 @@
 package the.grid.smp.arte.zip;
 
+import org.apache.commons.compress.archivers.zip.*;
 import the.grid.smp.arte.util.Util;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 public class Zip implements AutoCloseable {
 
+    private final ParallelScatterZipCreator scatter = new ParallelScatterZipCreator();
+
     private final Path root;
     private final Path output;
-    private final ZipOutputStream zos;
     private final boolean scramble;
 
-    public Zip(Path root, Path output, boolean scramble) throws FileNotFoundException {
+    public Zip(Path root, Path output, boolean scramble) throws IOException {
         this.root = root;
         this.output = output;
         this.scramble = scramble;
-
-        this.zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(output.toFile()), 16384));
     }
 
     public void add(Path path) throws IOException {
         if (Files.isDirectory(path)) {
             Util.walk(path, (file, attrs) -> {
-                this.add(file);
+                if (!attrs.isDirectory()) {
+                    try {
+                        this.addFile(file);
+                    } catch (IOException e) {
+                        System.out.println("Failed to process " + path);
+                        throw new RuntimeException(e);
+                    }
+                }
+
                 return FileVisitResult.CONTINUE;
             });
 
             return;
         }
 
-        ZipEntry entry = new ZipEntry(this.root.relativize(path).toString());
-        this.zos.putNextEntry(entry);
+        this.addFile(path);
+    }
 
-        Files.copy(path, this.zos);
-        this.zos.closeEntry();
+    protected void addFile(Path path) throws IOException {
+        ZipArchiveEntry entry = new ZipArchiveEntry(this.root.relativize(path).toString());
+        entry.setMethod(ZipEntry.DEFLATED);
+
+        this.scatter.addArchiveEntry(entry, () -> {
+            try {
+                return Files.newInputStream(path);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         if (this.scramble) {
             Scrambler.scramble(entry);
         }
     }
 
-    public void add(Path... paths) throws IOException {
+    public void add(Collection<Path> paths) throws IOException {
         for (Path path : paths) {
             this.add(path);
         }
     }
 
     @Override
-    public void close() throws IOException {
-        this.zos.close();
+    public void close() throws IOException, ExecutionException, InterruptedException {
+        try (ZipArchiveOutputStream zos = new ZipArchiveOutputStream(Files.newOutputStream(this.output))) {
+            this.scatter.writeTo(zos);
+        }
 
         if (this.scramble) {
             Scrambler.scramble(this.output);
         }
-    }
-
-    public Path getOutput() {
-        return output;
     }
 }

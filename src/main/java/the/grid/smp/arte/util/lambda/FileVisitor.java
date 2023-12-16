@@ -1,4 +1,4 @@
-package the.grid.smp.arte.util;
+package the.grid.smp.arte.util.lambda;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

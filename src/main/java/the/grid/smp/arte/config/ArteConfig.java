@@ -1,6 +1,7 @@
 package the.grid.smp.arte.config;
 
 import the.grid.smp.arte.Arte;
+import the.grid.smp.arte.config.data.PackMode;
 import the.grid.smp.communis.config.Config;
 
 import java.util.HashSet;
@@ -11,7 +12,9 @@ public class ArteConfig extends Config {
 
     private final int port = 8164;
     private final boolean scramble = true;
+    private final boolean repackOnStart = false;
 
+    private final PackMode mode = PackMode.BASIC;
     private final String prompt = "Hello! Please download the resourcepack!";
 
     // optionals. if whitelist is true, then the list represents optional packs
@@ -35,6 +38,14 @@ public class ArteConfig extends Config {
 
     public boolean shouldScramble() {
         return this.scramble;
+    }
+
+    public boolean repackOnStart() {
+        return repackOnStart;
+    }
+
+    public PackMode getMode() {
+        return mode;
     }
 
     public String getPrompt() {

@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import the.grid.smp.arte.command.ArteCommand;
 import the.grid.smp.arte.config.ArteConfig;
 import the.grid.smp.arte.listener.PlayerListener;
-import the.grid.smp.arte.manager.PackManager;
+import the.grid.smp.arte.pack.PackManager;
 
 public final class Arte extends JavaPlugin {
 

@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    //id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "the.grid.smp"
@@ -24,6 +24,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot:1.20.3-R0.1-SNAPSHOT")
     compileOnly("the.grid.smp:communis:1.5")
 
+    compileOnly("org.apache.commons:commons-compress:1.21")
     compileOnly("commons-codec:commons-codec:1.16.0")
 }
 

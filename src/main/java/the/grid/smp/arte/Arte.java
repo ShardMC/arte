@@ -6,18 +6,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import the.grid.smp.arte.command.ArteCommand;
 import the.grid.smp.arte.config.ArteConfig;
 import the.grid.smp.arte.listener.PlayerListener;
-import the.grid.smp.arte.pack.PackManager;
+import the.grid.smp.arte.pack.manager.PackManager;
+import the.grid.smp.arte.pack.manager.impl.AsyncPackManager;
 
 public final class Arte extends JavaPlugin {
 
-    private static Arte instance;
     private ArteConfig config;
     private PackManager packManager;
-
-    @Override
-    public void onLoad() {
-        instance = this;
-    }
 
     @Override
     public void onEnable() {
@@ -25,9 +20,14 @@ public final class Arte extends JavaPlugin {
         this.config.reload();
 
         this.command("arte", new ArteCommand(this));
-        this.packManager = new PackManager(this);
+        this.packManager = new AsyncPackManager(this);
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+    }
+
+    @Override
+    public void onDisable() {
+        this.packManager.stop();
     }
 
     public ArteConfig config() {
@@ -36,10 +36,6 @@ public final class Arte extends JavaPlugin {
 
     public PackManager getPackManager() {
         return packManager;
-    }
-
-    public static Arte getInstance() {
-        return instance;
     }
 
     private void command(String name, TabExecutor executor) {

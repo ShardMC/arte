@@ -12,8 +12,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class WebServer {
+
+    private final String address;
     private boolean enabled = false;
     private HttpServer server;
+
+    public WebServer(String address) {
+        this.address = address;
+    }
 
     public void start(int port) {
         // Server is already enabled stop code
@@ -37,7 +43,7 @@ public class WebServer {
         if (!address.startsWith("/"))
             address = "/" + address;
 
-        return "http://" + Bukkit.getServer().getIp() + ":" + this.server.getAddress().getPort() + address;
+        return "http://" + this.address + ":" + this.server.getAddress().getPort() + address;
     }
 
     public void host(Hostable hostable) throws IOException {

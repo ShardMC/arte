@@ -1,26 +1,18 @@
 package the.grid.smp.arte.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.io.file.SimplePathVisitor;
 import the.grid.smp.arte.util.lambda.FileVisitor;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.UUID;
 
 public class Util {
 
     public static void walk(Path path, FileVisitor function) throws IOException {
-        Files.walkFileTree(path, new SimplePathVisitor() {
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                return function.visit(file, attrs);
-            }
-        });
+        Files.walkFileTree(path, new SimpleFileVisitor(function));
     }
 
     public static byte[] hash(Path path) throws IOException {
@@ -33,5 +25,14 @@ public class Util {
 
     public static UUID uuid(Path path) {
         return Util.uuid(path.getFileName().toString());
+    }
+
+    public static String removeExtension(String file) {
+        int dotIndex = file.lastIndexOf('.');
+        return (dotIndex == -1) ? file : file.substring(0, dotIndex);
+    }
+
+    public static String nameWithoutExtension(Path path) {
+        return Util.removeExtension(path.getFileName().toString());
     }
 }

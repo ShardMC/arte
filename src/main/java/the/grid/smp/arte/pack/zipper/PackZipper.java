@@ -1,9 +1,8 @@
 package the.grid.smp.arte.pack.zipper;
 
-import org.apache.commons.io.FileUtils;
 import the.grid.smp.arte.config.data.FilterList;
-import the.grid.smp.arte.pack.meta.BuiltPack;
 import the.grid.smp.arte.pack.meta.BasicPackFile;
+import the.grid.smp.arte.pack.meta.BuiltPack;
 import the.grid.smp.arte.pack.meta.PackFile;
 import the.grid.smp.arte.pack.meta.namespace.NamespaceGroup;
 import the.grid.smp.arte.pack.meta.namespace.NamespaceLike;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 /**
  * @implNote This class should ALWAYS be re-instantiated for every reload.
@@ -49,7 +49,15 @@ public abstract class PackZipper {
     }
 
     public void clear() throws IOException {
-        FileUtils.cleanDirectory(this.output.toFile());
+        try (Stream<Path> stream = Files.list(this.output)) {
+            stream.parallel().forEach(path -> {
+                try {
+                    Files.delete(path);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
     }
 
     public Collection<BuiltPack> getPacks() {

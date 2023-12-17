@@ -4,7 +4,11 @@ main: the.grid.smp.arte.Arte
 api-version: '1.20'
 commands:
   arte:
-    usage: /arte reload
+    usage: /arte <reload|clear>
+    permission: arte.command
+permissions:
+  arte.command:
+    default: op
 depend:
   - communis
 libraries:

@@ -1,0 +1,14 @@
+port: 1864
+address: 0.0.0.0
+
+scramble: true
+repack-on-restart: true
+
+mode: BASIC
+prompt: 'Hello! Please download the resourcepack!'
+
+# optionals. if whitelist is true, then the list represents optional packs
+namespaces: []
+whitelist: true
+
+groups: []

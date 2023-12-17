@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    //id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "the.grid.smp"
@@ -9,7 +8,6 @@ version = "0.1.0"
 repositories {
     mavenCentral()
     maven("https://libraries.minecraft.net/")
-    maven("https://repo.codemc.io/repository/nms/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
 
     maven("https://maven.pkg.github.com/TheGridSMP/communis") {
@@ -21,8 +19,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot:1.20.3-R0.1-SNAPSHOT")
-    compileOnly("the.grid.smp:communis:1.5")
+    compileOnly("org.spigotmc:spigot-api:1.20.3-R0.1-SNAPSHOT")
+    compileOnly("the.grid.smp:communis:1.6.1")
 
     compileOnly("org.apache.commons:commons-compress:1.21")
     compileOnly("commons-codec:commons-codec:1.16.0")

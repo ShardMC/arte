@@ -4,6 +4,7 @@ import the.grid.smp.arte.Arte;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 public class ManualGroupedPackZipper extends GroupedPackZipper {
 
@@ -17,14 +18,14 @@ public class ManualGroupedPackZipper extends GroupedPackZipper {
 
     @Override
     protected Path[][] getGroups() {
-        String[][] groups = this.arte.config().getGroups();
-        Path[][] paths = new Path[groups.length][];
+        List<List<String>> groups = this.arte.config().getGroups();
+        Path[][] paths = new Path[groups.size()][];
 
-        for (int i = 0; i < groups.length; i++) {
-            String[] group = groups[i];
+        for (int i = 0; i < groups.size(); i++) {
+            List<String> group = groups.get(i);
 
-            for (int n = 0; n < group.length; n++) {
-                paths[i][n] = this.assets.resolve(group[n]);
+            for (int n = 0; n < group.size(); n++) {
+                paths[i][n] = this.assets.resolve(group.get(n));
             }
         }
 

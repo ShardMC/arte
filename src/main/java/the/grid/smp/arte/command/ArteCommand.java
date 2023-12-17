@@ -30,6 +30,9 @@ public class ArteCommand implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         BukkitScheduler scheduler = this.arte.getServer().getScheduler();
 
+        if (!sender.hasPermission("arte.command"))
+            return true;
+
         if (args[0].equals("reload")) {
             this.arte.config().reload();
 
@@ -65,6 +68,9 @@ public class ArteCommand implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        if (!sender.hasPermission("arte.command"))
+            return List.of();
+
         if (args.length == 1)
             return List.of("reload", "clear");
 

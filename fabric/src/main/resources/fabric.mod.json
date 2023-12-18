@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "arte",
+  "version": "${version}",
+  "name": "arte",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/arte/icon.png",
+  "environment": "server",
+  "entrypoints": {},
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

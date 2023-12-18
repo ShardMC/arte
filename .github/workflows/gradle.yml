@@ -38,4 +38,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Package
-        path: build/libs
+        path: |
+          bukkit/build/libs
+          fabric/build/libs

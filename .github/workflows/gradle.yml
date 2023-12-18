@@ -41,5 +41,5 @@ jobs:
         with:
           name: Package
           path: |
-            bukkit/build/libs
-            fabric/build/libs
+            bukkit/build/libs/*.jar
+            fabric/build/libs/*.jar

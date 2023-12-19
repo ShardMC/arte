@@ -48,7 +48,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About Arte</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -69,7 +69,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About Arte
 
 [![Arte Speed Comparison][speed-comparison]][github-url]
 

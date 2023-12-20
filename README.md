@@ -18,7 +18,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/TheGridSMP/arte">
-    <img src="images/logo.png" alt="Logo" style="image-rendering: pixelated; image-rendering: -moz-crisp-edges;" width="80" height="80">
+    <img src="images/logo-upscaled.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">ᴀʀᴛᴇ</h3>

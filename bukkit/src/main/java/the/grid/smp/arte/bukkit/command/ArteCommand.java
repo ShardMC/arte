@@ -64,7 +64,7 @@ public class ArteCommand implements TabExecutor {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            });
+            }).start();
         }
 
         return true;

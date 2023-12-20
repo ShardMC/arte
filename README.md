@@ -1,12 +1,5 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
 
 
@@ -25,13 +18,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/TheGridSMP/arte">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" style="image-rendering: pixelated; image-rendering: -moz-crisp-edges;" width="80" height="80">
   </a>
 
   <h3 align="center">ᴀʀᴛᴇ</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Send server resource packs in spoon-sized bites!
     <br />
     <a href="https://thegridsmp.github.io/projects/"><strong>Explore the docs »</strong></a>
     <br />
@@ -55,7 +48,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About Arte</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -76,20 +69,21 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About Arte
 
 [![Arte Speed Comparison][speed-comparison]][github-url]
 
-<!--There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+So, what does it do? Simple! Let's say you have a BIG server resource pack.
+Every time you make a little change, you will have to manually re-host it somewhere, and players will have to fully re-download it.
+This can get annoying. Arte splits the resource pack into parts (by namespaces), hosts it directly on your server
+and sends each one as a different server resource pack!
+> Q: How is this possible? There can only be one server resource pack loaded at one time!
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+> A: In 1.20.3 Mojang added a new feature that allows servers to send multiple server resource packs at a time! 
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+Players will only re-download the parts that actually need updating, and apply other server packs.
+(Tip: arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour)
 
-Use the `BLANK_README.md` to get started.-->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -98,8 +92,7 @@ Use the `BLANK_README.md` to get started.-->
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To set up arte on your server follow these steps.
 
 ### Prerequisites
 
@@ -115,7 +108,7 @@ This is an example of how to list things you need to use the software and how to
 [![GitHub][github-shield]][github-url]
 [![Spigot][spigot-shield]][spigot-url]
 
-_Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][spigot-url] or [GitHub][github-url] releases._
+_Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][spigot-url] or [GitHub][github-releases-url] releases._
 
 1. Start your server
 2. Open arte's config file
@@ -130,9 +123,12 @@ _Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Put your resource pack source (not zipped) in the `arte/resourcepack/` folder and run `/arte reload`.
+> [!NOTE]  
+> Arte folder can be different depending on your server! If you use Fabric or Quilt, it's folder will be in server's folder.
+> If you use Spigot, then arte's folder will be located in `plugins/arte/`
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://thegridsmp.github.io/projects/)._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -191,8 +187,6 @@ Distributed under the I HAVENT CHOSE A LICENSE YET- License. See [`LICENSE.md`](
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
 * [Choose an Open Source License](https://choosealicense.com)
 * [Devin's Badges](https://github.com/intergrav/devins-badges)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
@@ -215,7 +209,9 @@ Use this space to list resources you find helpful and would like to give credit 
 [github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png
 [github-url]: https://github.com/TheGridSMP/arte
 [github-issues-url]: https://github.com/TheGridSMP/arte/issues
+[github-releases-url]: https://github.com/TheGridSMP/arte/releases
 [fabric-api-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/requires/fabric-api_64h.png
 [fabric-api-url]: https://modrinth.com/mod/fabric-api
+[rptweaks-url]: https://modrinth.com/mod/resource-pack-tweaks
 [communis-url]: https://github.com/TheGridSMP/communis
 [speed-comparison]: images/screenshot.png

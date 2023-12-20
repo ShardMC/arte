@@ -76,7 +76,7 @@ public class ArteCommand implements TabExecutor {
             return List.of();
 
         if (args.length == 1)
-            return List.of("reload", "clear");
+            return List.of("reload", "clean");
 
         return List.of();
     }

@@ -6,14 +6,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import the.grid.smp.arte.bukkit.command.ArteCommand;
 import the.grid.smp.arte.bukkit.config.BukkitArteConfig;
 import the.grid.smp.arte.bukkit.listener.PlayerListener;
+import the.grid.smp.arte.bukkit.pack.BukkitPackManager;
 import the.grid.smp.arte.common.Arte;
-import the.grid.smp.arte.common.pack.manager.PackManager;
-import the.grid.smp.arte.common.pack.manager.impl.AsyncPackManager;
 
 public final class ArtePlugin extends JavaPlugin implements Arte {
 
     private BukkitArteConfig config;
-    private PackManager packManager;
+    private BukkitPackManager packManager;
 
     @Override
     public void onEnable() {
@@ -21,7 +20,7 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
         this.config.reload();
 
         this.command("arte", new ArteCommand(this));
-        this.packManager = new AsyncPackManager(this);
+        this.packManager = new BukkitPackManager(this);
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
     }
@@ -37,7 +36,7 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
     }
 
     @Override
-    public PackManager getPackManager() {
+    public BukkitPackManager getPackManager() {
         return packManager;
     }
 

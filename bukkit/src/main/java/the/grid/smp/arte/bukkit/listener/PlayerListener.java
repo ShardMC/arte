@@ -4,7 +4,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import the.grid.smp.arte.bukkit.ArtePlugin;
-import the.grid.smp.arte.bukkit.pack.BukkitPackManager;
 
 public class PlayerListener implements Listener {
 
@@ -16,7 +15,6 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if (this.arte.getPackManager() instanceof BukkitPackManager bukkit)
-            bukkit.apply(event.getPlayer());
+        this.arte.getPackManager().apply(event.getPlayer());
     }
 }

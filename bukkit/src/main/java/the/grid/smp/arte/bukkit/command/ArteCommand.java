@@ -7,7 +7,6 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 import the.grid.smp.arte.bukkit.ArtePlugin;
-import the.grid.smp.arte.bukkit.pack.BukkitPackManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,11 +42,8 @@ public class ArteCommand implements TabExecutor {
                 scheduler.runTask(this.arte, () -> {
                     sender.sendMessage("[Arte] Done!");
 
-                    if (!(this.arte.getPackManager() instanceof BukkitPackManager bukkit))
-                        return;
-
                     for (Player player : this.arte.getServer().getOnlinePlayers()) {
-                        bukkit.apply(player);
+                        this.arte.getPackManager().apply(player);
                     }
                 });
             }).start();

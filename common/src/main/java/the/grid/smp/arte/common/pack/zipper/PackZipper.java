@@ -31,7 +31,7 @@ public abstract class PackZipper {
     protected final Path assets;
     protected final Logger logger;
 
-    protected Collection<BuiltPack> packs;
+    protected Collection<BuiltPack> packs = new ArrayList<>();
 
     public PackZipper(Logger logger, Path root, Path output) throws IOException {
         this.root = Files.createDirectories(root);

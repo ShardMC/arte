@@ -16,12 +16,17 @@ dependencies {
     mappings("net.fabricmc:yarn:${yarnMappings}:v2")
     modImplementation("net.fabricmc:fabric-loader:${loaderVersion}")
 
+    compileOnly(project(":common"))
+
+    compileOnly("org.json:json:20231013")
+
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation("net.fabricmc.fabric-api:fabric-api:${apiVersion}")
 
     include(project(":common")) // common and its dependencies
     include("org.apache.commons:commons-compress:1.21")
     include("commons-codec:commons-codec:1.16.0")
+    include("org.json:json:20231013")
 }
 
 tasks.processResources {

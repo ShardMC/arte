@@ -1,18 +1,25 @@
 {
   "schemaVersion": 1,
   "id": "arte",
-  "version": "${version}",
+  "version": "unspecified",
   "name": "arte",
   "description": "",
-  "authors": [],
+  "authors": [
+    "NikSne",
+    "DrTheo_"
+  ],
   "contact": {},
-  "license": "All-Rights-Reserved",
+  "license": "Apache v2",
   "icon": "assets/arte/icon.png",
   "environment": "server",
-  "entrypoints": {},
+  "entrypoints": {
+    "server": [
+      "the.grid.smp.arte.fabric.ArteMod"
+    ]
+  },
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": "\u003e\u003d0.15.1",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "1.20.4"
   }
 }

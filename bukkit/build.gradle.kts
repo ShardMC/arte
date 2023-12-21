@@ -30,7 +30,7 @@ tasks.build {
 }
 
 tasks.processResources {
-    val props = mapOf("version" to version)
+    val props = mapOf("version" to rootProject.version)
     inputs.properties(props)
 
     filesMatching("plugin.yml") {

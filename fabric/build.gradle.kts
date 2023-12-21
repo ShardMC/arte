@@ -25,7 +25,7 @@ dependencies {
 }
 
 tasks.processResources {
-    val props = mapOf("version" to project.version,
+    val props = mapOf("version" to rootProject.version,
             "minecraft_version" to minecraftVersion,
             "loader_version" to loaderVersion
     )

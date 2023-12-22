@@ -48,6 +48,12 @@ public class Zip implements AutoCloseable {
         this.addFile(path);
     }
 
+    public void add(Collection<Path> paths) throws IOException {
+        for (Path path : paths) {
+            this.add(path);
+        }
+    }
+
     protected void addFile(Path path) throws IOException {
         ZipArchiveEntry entry = new ZipArchiveEntry(this.root.relativize(path).toString());
         entry.setMethod(ZipEntry.DEFLATED);
@@ -62,12 +68,6 @@ public class Zip implements AutoCloseable {
 
         if (this.scramble) {
             Scrambler.scramble(entry);
-        }
-    }
-
-    public void add(Collection<Path> paths) throws IOException {
-        for (Path path : paths) {
-            this.add(path);
         }
     }
 

@@ -1,14 +1,14 @@
 package the.grid.smp.arte.common.pack.zipper.grouped;
 
+import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.common.pack.zipper.BasicPackZipper;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.logging.Logger;
 
 public abstract class GroupedPackZipper extends BasicPackZipper {
 
-    public GroupedPackZipper(Logger logger, Path root, Path output) throws IOException {
+    public GroupedPackZipper(ArteLogger logger, Path root, Path output) throws IOException {
         super(logger, root, output);
     }
 

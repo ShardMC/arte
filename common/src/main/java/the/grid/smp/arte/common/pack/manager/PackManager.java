@@ -24,7 +24,7 @@ public class PackManager {
     public PackManager(Arte arte) {
         this.arte = arte;
         this.server = new WebServer(this.arte.config().getAddress());
-        this.arte.getLogger().info("Initialized web-server!");
+        this.arte.logger().info("Initialized web-server!");
 
         this.root = this.arte.getDataFolder()
                 .toPath().resolve("resourcepack");
@@ -59,7 +59,7 @@ public class PackManager {
 
             new Thread(() -> {
                 this.server.restart(config.getPort());
-                this.arte.getLogger().info("Restarted web-server! (Finished in " + (System.currentTimeMillis() - total) + "ms)");
+                this.arte.logger().info("Restarted web-server! (Finished in " + (System.currentTimeMillis() - total) + "ms)");
             }).start();
 
             this.zipper = zipper.create(this.arte, this.root, this.output);
@@ -73,7 +73,7 @@ public class PackManager {
                 }
             });
 
-            this.arte.getLogger().info("Finished reloading pack manager in " + (System.currentTimeMillis() - total) + "ms!");
+            this.arte.logger().info("Finished reloading pack manager in " + (System.currentTimeMillis() - total) + "ms!");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

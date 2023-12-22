@@ -1,8 +1,7 @@
 package the.grid.smp.arte.common.util.lambda;
 
-import java.io.IOException;
-
 @FunctionalInterface
+@Deprecated
 public interface RunnableIO {
-    void run() throws IOException;
+    void run();
 }

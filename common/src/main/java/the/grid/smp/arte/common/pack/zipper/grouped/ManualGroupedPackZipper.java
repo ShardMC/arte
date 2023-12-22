@@ -11,7 +11,7 @@ public class ManualGroupedPackZipper extends GroupedPackZipper {
     private final Arte arte;
 
     public ManualGroupedPackZipper(Arte arte, Path root, Path output) throws IOException {
-        super(arte.getLogger(), root, output);
+        super(arte.logger(), root, output);
 
         this.arte = arte;
     }

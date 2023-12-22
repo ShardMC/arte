@@ -6,13 +6,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 import the.grid.smp.arte.bukkit.command.ArteCommand;
 import the.grid.smp.arte.bukkit.config.BukkitArteConfig;
 import the.grid.smp.arte.bukkit.listener.PlayerListener;
+import the.grid.smp.arte.bukkit.logger.BukkitArteLogger;
 import the.grid.smp.arte.bukkit.pack.BukkitPackManager;
 import the.grid.smp.arte.common.Arte;
+import the.grid.smp.arte.common.logger.ArteLogger;
 
 public final class ArtePlugin extends JavaPlugin implements Arte {
 
     private BukkitArteConfig config;
     private BukkitPackManager packManager;
+
+    private final BukkitArteLogger logger = new BukkitArteLogger("arte");
 
     @Override
     public void onEnable() {
@@ -25,9 +29,16 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
     }
 
+
+
     @Override
     public void onDisable() {
         this.packManager.stop();
+    }
+
+    @Override
+    public ArteLogger logger() {
+        return this.logger;
     }
 
     @Override

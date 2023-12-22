@@ -32,6 +32,7 @@ public class BukkitArteConfig extends Config implements ArteConfig {
         super(arte, "config");
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void read(ConfigurationSection section) {
         this.port = section.getInt("port", 8164);

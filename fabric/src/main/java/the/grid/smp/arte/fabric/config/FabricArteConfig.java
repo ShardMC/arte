@@ -1,22 +1,22 @@
 package the.grid.smp.arte.fabric.config;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.data.PackMode;
+import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.fabric.ArteMod;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class FabricArteConfig
 implements ArteConfig {
@@ -32,8 +32,11 @@ implements ArteConfig {
     private JSONObject config = new JSONObject();
     private final File file;
 
+    private final ArteLogger logger;
+
     public FabricArteConfig(ArteMod mod) {
         this.file = mod.getConfigFile();
+        this.logger = mod.logger();
     }
 
     public void reload() {
@@ -43,7 +46,7 @@ implements ArteConfig {
                 stream = this.getClass().getClassLoader().getResourceAsStream("arte.json");
                 try {
                     assert (stream != null);
-                    Files.copy(stream, this.file.toPath(), new CopyOption[0]);
+                    Files.copy(stream, this.file.toPath());
                 }
                 finally {
                     if (stream != null) {
@@ -56,10 +59,8 @@ implements ArteConfig {
             stream.close();
             this.read();
         }
-        catch (FileNotFoundException stream) {
-        }
-        catch (IOException var2) {
-            var2.printStackTrace();
+        catch (IOException e) {
+            this.logger.throwing(e);
         }
     }
 
@@ -68,9 +69,9 @@ implements ArteConfig {
         this.address = this.config.optString("address", "0.0.0.0");
         this.scramble = this.config.optBoolean("scramble", true);
         this.repackOnStart = this.config.optBoolean("repack-on-restart", true);
-        this.mode = PackMode.valueOf((String)this.config.optString("mode", "BASIC"));
+        this.mode = PackMode.valueOf(this.config.optString("mode", "BASIC"));
         this.prompt = this.config.optString("prompt", "Hello! Please download the resourcepack!");
-        this.namespaces = new HashSet<String>();
+        this.namespaces = new HashSet<>();
         JSONArray jsonArray1 = this.config.optJSONArray("namespaces", new JSONArray());
         if (jsonArray1 != null) {
             int len = jsonArray1.length();
@@ -79,12 +80,12 @@ implements ArteConfig {
             }
         }
         this.whitelist = this.config.optBoolean("whitelist", true);
-        this.groups = new ArrayList<List<String>>();
+        this.groups = new ArrayList<>();
         jsonArray1 = this.config.optJSONArray("groups", new JSONArray());
         if (jsonArray1 != null) {
             for (int i = 0; i < jsonArray1.length(); ++i) {
                 JSONArray jsonArray2 = (JSONArray)jsonArray1.get(i);
-                ArrayList<String> array = new ArrayList<String>();
+                List<String> array = new ArrayList<>();
                 int j = 0;
                 while (j < jsonArray2.length()) {
                     array.add((String)jsonArray2.get(j));
@@ -93,18 +94,6 @@ implements ArteConfig {
                 this.groups.add(array);
             }
         }
-    }
-
-    public void write() {
-        this.config.put("port", this.port);
-        this.config.put("address", (Object)this.address);
-        this.config.put("scramble", this.scramble);
-        this.config.put("repack-on-restart", this.repackOnStart);
-        this.config.put("mode", (Object)this.mode.toString());
-        this.config.put("prompt", (Object)this.prompt);
-        this.config.put("namespaces", this.namespaces);
-        this.config.put("whitelist", this.whitelist);
-        this.config.put("groups", this.groups);
     }
 
     public int getPort() {

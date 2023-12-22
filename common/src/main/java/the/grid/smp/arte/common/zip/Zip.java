@@ -21,7 +21,7 @@ public class Zip implements AutoCloseable {
     private final Path output;
     private final boolean scramble;
 
-    public Zip(Path root, Path output, boolean scramble) throws IOException {
+    public Zip(Path root, Path output, boolean scramble) {
         this.root = root;
         this.output = output;
         this.scramble = scramble;
@@ -31,12 +31,7 @@ public class Zip implements AutoCloseable {
         if (Files.isDirectory(path)) {
             Util.walk(path, (file, attrs) -> {
                 if (!attrs.isDirectory()) {
-                    try {
-                        this.addFile(file);
-                    } catch (IOException e) {
-                        System.out.println("Failed to process " + path);
-                        throw new RuntimeException(e);
-                    }
+                    this.addFile(file);
                 }
 
                 return FileVisitResult.CONTINUE;
@@ -54,7 +49,7 @@ public class Zip implements AutoCloseable {
         }
     }
 
-    protected void addFile(Path path) throws IOException {
+    protected void addFile(Path path) {
         ZipArchiveEntry entry = new ZipArchiveEntry(this.root.relativize(path).toString());
         entry.setMethod(ZipEntry.DEFLATED);
 

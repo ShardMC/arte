@@ -12,7 +12,7 @@ public class BukkitPackManager extends AsyncPackManager {
     }
 
     public void apply(Player player) {
-        this.arte.getLogger().info("Applying pack to player " + player.getName());
+        this.arte.logger().info("Applying pack to player " + player.getName());
         String prompt = this.arte.config().getPrompt();
 
         for (BuiltPack pack : this.zipper.getPacks()) {

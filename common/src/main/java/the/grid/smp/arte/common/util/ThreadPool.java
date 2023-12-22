@@ -2,7 +2,6 @@ package the.grid.smp.arte.common.util;
 
 import the.grid.smp.arte.common.util.lambda.RunnableIO;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -25,13 +24,7 @@ public class ThreadPool {
     }
 
     public void addCatchable(RunnableIO runnable) {
-        this.add(() -> {
-            try {
-                runnable.run();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        this.add(runnable::run);
     }
 
     public void start() {

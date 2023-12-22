@@ -1,6 +1,7 @@
 package the.grid.smp.arte.common.pack.zipper;
 
 import the.grid.smp.arte.common.data.FilterList;
+import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.common.pack.meta.BasicPackFile;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
 import the.grid.smp.arte.common.pack.meta.PackFile;
@@ -17,7 +18,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 /**
@@ -29,11 +29,11 @@ public abstract class PackZipper {
     protected final Path output;
 
     protected final Path assets;
-    protected final Logger logger;
+    protected final ArteLogger logger;
 
     protected Collection<BuiltPack> packs = new ArrayList<>();
 
-    public PackZipper(Logger logger, Path root, Path output) throws IOException {
+    public PackZipper(ArteLogger logger, Path root, Path output) throws IOException {
         this.root = Files.createDirectories(root);
         this.output = Files.createDirectories(output);
 

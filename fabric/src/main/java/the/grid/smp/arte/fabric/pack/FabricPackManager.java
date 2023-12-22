@@ -13,13 +13,11 @@ public class FabricPackManager extends AsyncPackManager {
     }
 
     public void apply(ServerPlayerEntity player) {
-        this.arte.getLogger().info("Applying pack to player " + player.getName());
+        this.arte.logger().info("Applying pack to player " + player.getName());
         Text prompt = Text.of(this.arte.config().getPrompt());
 
         for (BuiltPack pack : this.zipper.getPacks()) {
-            ResourcePackSendS2CPacket packet = new ResourcePackSendS2CPacket(pack.uuid(), pack.getAddress(this.server), pack.getName(), pack.force(), prompt);
-            this.arte.getLogger().info(packet.url());
-            player.networkHandler.sendPacket(packet);
+            player.networkHandler.sendPacket(new ResourcePackSendS2CPacket(pack.uuid(), pack.getAddress(this.server), pack.getName(), pack.force(), prompt));
         }
     }
 }

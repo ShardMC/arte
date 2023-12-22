@@ -18,8 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FabricArteConfig
-implements ArteConfig {
+public class FabricArteConfig implements ArteConfig {
     private int port = 8164;
     private String address = "0.0.0.0";
     private boolean scramble = true;
@@ -37,6 +36,8 @@ implements ArteConfig {
     public FabricArteConfig(ArteMod mod) {
         this.file = mod.getConfigFile();
         this.logger = mod.logger();
+
+        this.reload();
     }
 
     public void reload() {
@@ -46,20 +47,20 @@ implements ArteConfig {
                 stream = this.getClass().getClassLoader().getResourceAsStream("arte.json");
                 try {
                     assert (stream != null);
+
                     Files.copy(stream, this.file.toPath());
-                }
-                finally {
-                    if (stream != null) {
+                } finally {
+                    if (stream != null)
                         stream.close();
-                    }
                 }
             }
+
             stream = new FileInputStream(this.file);
             this.config = new JSONObject(new JSONTokener(stream));
+
             stream.close();
             this.read();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             this.logger.throwing(e);
         }
     }
@@ -84,11 +85,11 @@ implements ArteConfig {
         jsonArray1 = this.config.optJSONArray("groups", new JSONArray());
         if (jsonArray1 != null) {
             for (int i = 0; i < jsonArray1.length(); ++i) {
-                JSONArray jsonArray2 = (JSONArray)jsonArray1.get(i);
+                JSONArray jsonArray2 = (JSONArray) jsonArray1.get(i);
                 List<String> array = new ArrayList<>();
                 int j = 0;
                 while (j < jsonArray2.length()) {
-                    array.add((String)jsonArray2.get(j));
+                    array.add((String) jsonArray2.get(j));
                     ++i;
                 }
                 this.groups.add(array);

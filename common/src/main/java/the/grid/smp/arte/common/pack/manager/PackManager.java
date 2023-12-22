@@ -85,7 +85,7 @@ public class PackManager {
 
         try {
             if (this.zipper != null)
-                this.zipper.clear();
+                this.zipper.clean();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

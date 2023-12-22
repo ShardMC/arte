@@ -2,11 +2,10 @@ package the.grid.smp.arte.common.pack.zipper;
 
 import the.grid.smp.arte.common.data.FilterList;
 import the.grid.smp.arte.common.logger.ArteLogger;
-import the.grid.smp.arte.common.pack.meta.BasicPackFile;
+import the.grid.smp.arte.common.pack.meta.file.BasicPackFile;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
-import the.grid.smp.arte.common.pack.meta.PackFile;
-import the.grid.smp.arte.common.pack.meta.namespace.NamespaceGroup;
-import the.grid.smp.arte.common.pack.meta.namespace.NamespaceLike;
+import the.grid.smp.arte.common.pack.meta.file.PackFile;
+import the.grid.smp.arte.common.pack.meta.file.NamespaceGroup;
 import the.grid.smp.arte.common.util.ThreadPool;
 import the.grid.smp.arte.common.zip.Zip;
 
@@ -42,7 +41,7 @@ public abstract class PackZipper {
     }
 
     protected Context createContext() {
-        return new Context(this.root, this.output, "pack.mcmeta", "pack.png");
+        return new Context(this.logger, this.root, this.output, "pack.mcmeta", "pack.png");
     }
 
     public void zip(FilterList list, boolean scramble, Consumer<BuiltPack> consumer) throws IOException {
@@ -52,7 +51,7 @@ public abstract class PackZipper {
         this.packs = context.zip(list, scramble, consumer);
     }
 
-    public void clear() throws IOException {
+    public void clean() throws IOException {
         try (Stream<Path> stream = Files.list(this.output)) {
             stream.parallel().forEach(path -> {
                 try {
@@ -62,6 +61,8 @@ public abstract class PackZipper {
                 }
             });
         }
+
+        this.packs.clear();
     }
 
     public Collection<BuiltPack> getPacks() {
@@ -72,13 +73,17 @@ public abstract class PackZipper {
 
     public static class Context {
 
+        protected final ArteLogger logger;
+
         protected final Path root;
         protected final Path output;
 
-        protected final List<NamespaceLike> namespaces = new ArrayList<>();
+        protected final List<NamespaceGroup> groups = new ArrayList<>();
         protected final List<PackFile> defaults = new ArrayList<>();
 
-        public Context(Path root, Path output, String... defaults) {
+        public Context(ArteLogger logger, Path root, Path output, String... defaults) {
+            this.logger = logger;
+
             this.root = root;
             this.output = output;
 
@@ -94,29 +99,28 @@ public abstract class PackZipper {
                 builder.append(path.getFileName().toString());
             }
 
-            this.namespaces.add(new NamespaceGroup(builder.toString(), namespaces));
+            this.groups.add(new NamespaceGroup(builder.toString(), namespaces));
             return this;
         }
 
         public Collection<BuiltPack> zip(FilterList list, boolean scramble, Consumer<BuiltPack> consumer) {
             List<BuiltPack> packs = new ArrayList<>();
-            ThreadPool pool = new ThreadPool();
+            ThreadPool pool = new ThreadPool(this.logger);
 
-            for (NamespaceLike namespace : this.namespaces) {
-                pool.addCatchable(() -> {
+            for (NamespaceGroup group : this.groups) {
+                pool.add(() -> {
                     try {
-                        Path generated = this.output.resolve(namespace.name() + ".zip");
+                        Path generated = this.output.resolve(group.name() + ".zip");
 
                         try (Zip zip = new Zip(this.root, generated, scramble)) {
-                            namespace.zip(zip);
-
+                            group.zip(zip);
                             for (PackFile file : this.defaults) {
                                 file.zip(zip);
                             }
                         }
 
                         boolean force = !(list.elements().contains(
-                                namespace.name())
+                                group.name())
                         ) && list.whitelist();
 
                         BuiltPack pack = new BuiltPack(generated, force);
@@ -124,7 +128,7 @@ public abstract class PackZipper {
                         consumer.accept(pack);
                         packs.add(pack);
                     } catch (IOException | ExecutionException | InterruptedException e) {
-                        throw new RuntimeException(e);
+                        this.logger.throwing(e, "Uh-oh. This shouldn't happen!");
                     }
                 });
             }

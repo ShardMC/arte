@@ -1,4 +1,4 @@
-package the.grid.smp.arte.common.pack.meta;
+package the.grid.smp.arte.common.pack.meta.file;
 
 import the.grid.smp.arte.common.zip.Zip;
 

@@ -19,4 +19,5 @@ public interface ArteConfig {
     boolean isWhitelist();
 
     List<List<String>> getGroups();
+    void reload();
 }

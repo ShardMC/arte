@@ -1,18 +1,20 @@
 package the.grid.smp.arte.bukkit.logger;
 
+import org.bukkit.plugin.Plugin;
 import the.grid.smp.arte.common.logger.ArteLogger;
 
 import java.util.logging.Logger;
 
 public class BukkitArteLogger implements ArteLogger {
+
     private final Logger logger;
 
     public BukkitArteLogger(Logger logger) {
         this.logger = logger;
     }
 
-    public BukkitArteLogger(String name) {
-        this(Logger.getLogger(name));
+    public BukkitArteLogger(Plugin plugin) {
+        this(plugin.getLogger());
     }
 
     @Override
@@ -33,6 +35,7 @@ public class BukkitArteLogger implements ArteLogger {
     @Override
     public void throwing(Throwable throwable, String... message) {
         this.error(message);
+
         StackTraceElement element = throwable.getStackTrace()[0];
         this.logger.throwing(element.getClassName(), element.getMethodName(), throwable);
     }

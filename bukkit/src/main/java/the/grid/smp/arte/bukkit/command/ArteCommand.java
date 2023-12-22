@@ -52,7 +52,7 @@ public class ArteCommand implements TabExecutor {
         if (args[0].equals("clean")) {
             new Thread(() -> {
                 try {
-                    this.arte.getPackManager().getZipper().clear();
+                    this.arte.getPackManager().getZipper().clean();
 
                     scheduler.runTask(this.arte, () ->
                             sender.sendMessage("[Arte] Done!")

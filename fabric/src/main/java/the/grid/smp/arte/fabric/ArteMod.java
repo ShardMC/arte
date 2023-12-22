@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import the.grid.smp.arte.common.Arte;
+import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.fabric.command.ArteCommand;
 import the.grid.smp.arte.fabric.config.FabricArteConfig;
@@ -16,31 +17,38 @@ import the.grid.smp.arte.fabric.pack.FabricPackManager;
 import java.io.File;
 
 public class ArteMod implements DedicatedServerModInitializer, Arte {
-    private final FabricArteLogger logger = new FabricArteLogger("arte");
-    private FabricArteConfig config;
+
+    private final ArteLogger logger = new FabricArteLogger("arte");
+    private ArteConfig config;
+
     private FabricPackManager packManager;
 
     public void onInitializeServer() {
         this.config = new FabricArteConfig(this);
-        this.config.reload();
-        CommandRegistrationCallback.EVENT.register(new ArteCommand(this));
         this.packManager = new FabricPackManager(this);
+
+        CommandRegistrationCallback.EVENT.register(new ArteCommand(this));
+
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> this.packManager.stop());
         ServerPlayConnectionEvents.JOIN.register(new PlayerListener(this));
     }
 
+    @Override
     public ArteLogger logger() {
         return this.logger;
     }
 
-    public FabricArteConfig config() {
+    @Override
+    public ArteConfig config() {
         return this.config;
     }
 
+    @Override
     public FabricPackManager getPackManager() {
         return this.packManager;
     }
 
+    @Override
     public File getDataFolder() {
         return FabricLoader.getInstance().getGameDir().resolve("arte").toFile();
     }

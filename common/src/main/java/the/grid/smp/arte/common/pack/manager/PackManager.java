@@ -41,11 +41,15 @@ public class PackManager {
     }
 
     public void load() {
-        this.reload(PackMode.CACHED.creator());
+        this.reload(PackMode.CACHED);
     }
 
     public void reload() {
-        this.reload(this.arte.config().getMode().creator());
+        this.reload(this.arte.config().getMode());
+    }
+
+    private void reload(PackMode mode) {
+        this.reload(mode.creator());
     }
 
     protected void reload(PackZipperCreator zipper) {

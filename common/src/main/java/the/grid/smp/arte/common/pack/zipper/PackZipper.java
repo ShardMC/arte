@@ -41,8 +41,12 @@ public abstract class PackZipper {
         this.logger = logger;
     }
 
+    protected Context createContext() {
+        return new Context(this.root, this.output, "pack.mcmeta", "pack.png");
+    }
+
     public void zip(FilterList list, boolean scramble, Consumer<BuiltPack> consumer) throws IOException {
-        Context context = new Context(this.root, this.output, "pack.mcmeta", "pack.png");
+        Context context = this.createContext();
         this.zip(context);
 
         this.packs = context.zip(list, scramble, consumer);
@@ -68,11 +72,11 @@ public abstract class PackZipper {
 
     public static class Context {
 
-        private final Path root;
-        private final Path output;
+        protected final Path root;
+        protected final Path output;
 
-        private final List<NamespaceLike> namespaces = new ArrayList<>();
-        private final List<PackFile> defaults = new ArrayList<>();
+        protected final List<NamespaceLike> namespaces = new ArrayList<>();
+        protected final List<PackFile> defaults = new ArrayList<>();
 
         public Context(Path root, Path output, String... defaults) {
             this.root = root;

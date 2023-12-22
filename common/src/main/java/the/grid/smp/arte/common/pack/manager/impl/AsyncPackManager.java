@@ -12,9 +12,7 @@ public class AsyncPackManager extends PackManager {
 
     @Override
     protected void reload(PackZipperCreator zipper) {
-        //new Thread(() ->
-                super.reload(zipper);
-        //).start();
+        new Thread(() -> super.reload(zipper)).start();
     }
 
     @Override

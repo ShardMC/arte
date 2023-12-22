@@ -26,13 +26,4 @@ public class Util {
     public static UUID uuid(Path path) {
         return Util.uuid(path.getFileName().toString());
     }
-
-    public static String removeExtension(String file) {
-        int dotIndex = file.lastIndexOf('.');
-        return (dotIndex == -1) ? file : file.substring(0, dotIndex);
-    }
-
-    public static String nameWithoutExtension(Path path) {
-        return Util.removeExtension(path.getFileName().toString());
-    }
 }

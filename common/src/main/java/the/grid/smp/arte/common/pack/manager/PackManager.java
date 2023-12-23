@@ -65,7 +65,7 @@ public class PackManager {
             this.zipper = zipper.create(this.arte, this.root, this.output);
 
             FilterList filter = new FilterList(config.getNamespaces(), config.isWhitelist());
-            this.zipper.zip(filter, config.scramble(), pack -> {
+            this.zipper.zip(filter, config.shouldScramble(), pack -> {
                 try {
                     this.server.host(pack);
                 } catch (IOException e) {

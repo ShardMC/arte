@@ -17,12 +17,16 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.3-R0.1-SNAPSHOT")
-    compileOnly("the.grid.smp:communis:1.6.1")
-
-    compileOnly("org.apache.commons:commons-compress:1.25.0")
-    compileOnly("commons-codec:commons-codec:1.16.0")
+    compileOnly("the.grid.smp:communis:1.6.2")
 
     implementation(project(":common"))
+}
+
+tasks.shadowJar {
+    dependencies {
+        exclude(dependency("org.apache.commons:commons-compress:1.25.0"))
+        exclude(dependency("commons-codec:commons-codec:1.16.0"))
+    }
 }
 
 tasks.build {

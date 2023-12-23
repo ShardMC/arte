@@ -1,114 +1,73 @@
 package the.grid.smp.arte.bukkit.config;
 
-import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import the.grid.smp.arte.bukkit.ArtePlugin;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.data.PackMode;
-import the.grid.smp.communis.config.Config;
+import the.grid.smp.arte.common.util.Util;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class BukkitArteConfig extends Config implements ArteConfig {
+public class BukkitArteConfig extends ArteConfig {
 
-    private int port;
-    private String address;
-
-    private boolean scramble;
-    private boolean repackOnStart;
-
-    private PackMode mode;
-    private String prompt;
-
-    // optionals. if whitelist is true, then the list represents optional packs
-    private Set<String> namespaces;
-    private boolean whitelist;
-
-    private List<List<String>> groups;
+    private FileConfiguration config;
 
     public BukkitArteConfig(ArtePlugin arte) {
-        super(arte, "config");
+        super(arte.logger(), new File(arte.getDataFolder(), "config.yml"));
     }
 
+    @Override
     @SuppressWarnings("unchecked")
-    @Override
-    public void read(ConfigurationSection section) {
-        this.port = section.getInt("port", 8164);
-        this.address = section.getString("address", "0.0.0.0");
+    protected void read() {
+        this.port = this.config.getInt("port");
+        this.address = this.config.getString("address");
 
-        this.scramble = section.getBoolean("scramble", true);
-        this.repackOnStart = section.getBoolean("repack-on-restart", true);
+        this.scramble = this.config.getBoolean("scramble");
+        this.repackOnStart = this.config.getBoolean("repack-on-start");
 
-        this.mode = PackMode.valueOf(section.getString("mode", "BASIC"));
-        this.prompt = section.getString("prompt", "Hello! Please download the resourcepack!");
+        this.mode = PackMode.valueOf(this.config.getString("mode"));
+        this.prompt = this.config.getString("prompt");
 
-        this.namespaces = new HashSet<>(section.getStringList("namespaces"));
-        this.whitelist = section.getBoolean("whitelist", true);
+        this.namespaces = new HashSet<>(this.config.getStringList("namespaces"));
+        this.whitelist = this.config.getBoolean("whitelist");
 
-        this.groups = (List<List<String>>) section.getList("groups", new ArrayList<>());
+        this.groups = (List<List<String>>) this.config.getList("groups");
     }
 
     @Override
-    public void write(ConfigurationSection section) {
-        section.set("port", this.port);
-        section.set("address", this.address);
+    protected void write() {
+        this.config.set("port", this.port);
+        this.config.set("address", this.address);
 
-        section.set("scramble", this.scramble);
-        section.set("repack-on-restart", this.repackOnStart);
+        this.config.set("scramble", this.scramble);
+        this.config.set("repack-on-restart", this.repackOnStart);
 
-        section.set("mode", this.mode.toString());
-        section.set("prompt", this.prompt);
+        this.config.set("mode", this.mode.toString());
+        this.config.set("prompt", this.prompt);
 
-        section.set("namespaces", this.namespaces);
-        section.set("whitelist", this.whitelist);
+        this.config.set("namespaces", this.namespaces);
+        this.config.set("whitelist", this.whitelist);
 
-        section.set("groups", this.groups);
+        this.config.set("groups", this.groups);
     }
 
     @Override
-    public int getPort() {
-        return port;
+    protected void defaults() throws IOException {
+        FileConfiguration defaults = YamlConfiguration.loadConfiguration(Util.getDefaultResourceFile(this.file));
+        this.config.setDefaults(defaults);
     }
 
     @Override
-    public String getAddress() {
-        return address;
+    protected void create() {
+        this.config = YamlConfiguration.loadConfiguration(this.file.toFile());
     }
 
     @Override
-    public PackMode getMode() {
-        return mode;
-    }
-
-    @Override
-    public boolean scramble() {
-        return scramble;
-    }
-
-    @Override
-    public boolean repackOnStart() {
-        return repackOnStart;
-    }
-
-    @Override
-    public String getPrompt() {
-        return prompt;
-    }
-
-    @Override
-    public Set<String> getNamespaces() {
-        return namespaces;
-    }
-
-    @Override
-    public boolean isWhitelist() {
-        return whitelist;
-    }
-
-    @Override
-    public List<List<String>> getGroups() {
-        return groups;
+    protected void dump() throws IOException {
+        this.config.save(this.file.toFile());
     }
 }

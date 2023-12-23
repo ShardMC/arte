@@ -7,17 +7,20 @@ import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.data.PackMode;
 import the.grid.smp.arte.common.util.Util;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
 
 public class BukkitArteConfig extends ArteConfig {
 
+    private final ArtePlugin arte;
     private FileConfiguration config;
 
     public BukkitArteConfig(ArtePlugin arte) {
-        super(arte.logger(), new File(arte.getDataFolder(), "config.yml"));
+        super(arte.logger(), arte.getDataFolder().toPath().resolve("config.yml"), false);
+        this.arte = arte;
     }
 
     @Override
@@ -69,5 +72,10 @@ public class BukkitArteConfig extends ArteConfig {
     @Override
     protected void dump() throws IOException {
         this.config.save(this.file.toFile());
+    }
+
+    @Override
+    protected InputStream getResource(Path path) {
+        return this.arte.getResource(path.getFileName().toString());
     }
 }

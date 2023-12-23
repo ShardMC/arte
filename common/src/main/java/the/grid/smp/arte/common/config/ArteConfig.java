@@ -2,6 +2,7 @@ package the.grid.smp.arte.common.config;
 
 import the.grid.smp.arte.common.data.PackMode;
 import the.grid.smp.arte.common.logger.ArteLogger;
+import the.grid.smp.arte.common.util.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +31,16 @@ public abstract class ArteConfig {
 
     protected List<List<String>> groups;
 
-    public ArteConfig(ArteLogger logger, Path file) {
+    public ArteConfig(ArteLogger logger, Path file, boolean reload) {
         this.logger = logger;
         this.file = file;
+
+        if (reload)
+            this.reload();
+    }
+
+    public ArteConfig(ArteLogger logger, Path file) {
+        this(logger, file, true);
     }
 
     public ArteConfig(ArteLogger logger, File path) {
@@ -46,12 +54,13 @@ public abstract class ArteConfig {
     protected abstract void create() throws IOException;
     protected abstract void dump() throws IOException;
 
-    private void saveDefault() throws IOException {
-        String name = this.file.getFileName().toString();
-        try (InputStream stream = this.getClass().getClassLoader().getResourceAsStream(name)) {
-            if (stream == null)
-                throw new IOException("Couldn't find the default config! The build may be corrupt!");
+    protected InputStream getResource(Path path) throws IOException {
+        return Util.getDefaultResourceStream(path);
+    }
 
+    private void saveDefault() throws IOException {
+        this.logger.info("Config file doesn't exist! Copying from files...");
+        try (InputStream stream = this.getResource(this.file)) {
             Files.copy(stream, this.file);
         }
     }
@@ -65,6 +74,7 @@ public abstract class ArteConfig {
             this.defaults();
             this.read();
         } catch (IOException e) {
+            this.logger.throwing(e, "Failed to reload config.");
             e.printStackTrace();
         }
     }
@@ -81,7 +91,7 @@ public abstract class ArteConfig {
             this.write();
             this.dump();
         } catch (IOException e) {
-            e.printStackTrace();
+            this.logger.throwing(e, "Failed to save config.");
         }
     }
 

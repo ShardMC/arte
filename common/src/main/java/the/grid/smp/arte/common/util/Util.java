@@ -31,26 +31,21 @@ public class Util {
     }
 
     public static File getDefaultResourceFile(Path file) throws IOException {
-        String name = file.getFileName().toString();
+        String name = "/" + file.getFileName().toString();
         URL url = Util.class.getClassLoader().getResource(name);
 
         if (url == null)
-            throw new IOException("Couldn't find the default config! The build may be corrupt!");
+            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
 
-        File result = new File(url.getFile());
-
-        if (!result.exists())
-            throw new IOException("Couldn't find the default config! The build may be corrupt!");
-
-        return result;
+        return new File(url.getFile());
     }
 
     public static InputStream getDefaultResourceStream(Path file) throws IOException {
-        String name = file.getFileName().toString();
+        String name = "/" + file.getFileName().toString();
         InputStream stream = Util.class.getClassLoader().getResourceAsStream(name);
 
         if (stream == null)
-            throw new IOException("Couldn't find the default config! The build may be corrupt!");
+            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
 
         return stream;
     }

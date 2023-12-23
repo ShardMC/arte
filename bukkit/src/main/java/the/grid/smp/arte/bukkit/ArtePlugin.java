@@ -32,6 +32,7 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
     @Override
     public void onDisable() {
         this.packManager.stop();
+        this.config.save();
     }
 
     @Override

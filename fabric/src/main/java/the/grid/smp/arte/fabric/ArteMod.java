@@ -28,9 +28,12 @@ public class ArteMod implements DedicatedServerModInitializer, Arte {
         this.packManager = new FabricPackManager(this);
 
         CommandRegistrationCallback.EVENT.register(new ArteCommand(this));
-
-        ServerLifecycleEvents.SERVER_STOPPING.register(server -> this.packManager.stop());
         ServerPlayConnectionEvents.JOIN.register(new PlayerListener(this));
+
+        ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+            this.packManager.stop();
+            this.config.save();
+        });
     }
 
     @Override

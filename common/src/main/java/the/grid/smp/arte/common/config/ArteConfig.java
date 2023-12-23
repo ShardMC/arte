@@ -75,7 +75,6 @@ public abstract class ArteConfig {
             this.read();
         } catch (IOException e) {
             this.logger.throwing(e, "Failed to reload config.");
-            e.printStackTrace();
         }
     }
 

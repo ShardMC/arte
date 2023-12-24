@@ -100,6 +100,7 @@ public abstract class PackZipper {
             }
 
             this.groups.add(new NamespaceGroup(builder.toString(), namespaces));
+            this.logger.info("Adding namespace(s) to zip: '", builder.toString(), "'");
             return this;
         }
 
@@ -111,9 +112,11 @@ public abstract class PackZipper {
                 pool.add(() -> {
                     try {
                         Path generated = this.output.resolve(group.name() + ".zip");
+                        this.logger.info("Zipping pack to", generated.toString());
 
                         try (Zip zip = new Zip(this.root, generated, scramble)) {
                             group.zip(zip);
+
                             for (PackFile file : this.defaults) {
                                 file.zip(zip);
                             }

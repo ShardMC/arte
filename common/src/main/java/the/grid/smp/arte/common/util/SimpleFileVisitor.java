@@ -16,6 +16,10 @@ public class SimpleFileVisitor extends java.nio.file.SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
-        return this.func.visit(path, attrs);
+        if (attrs.isDirectory())
+            return FileVisitResult.CONTINUE;
+
+        this.func.visit(path, attrs);
+        return FileVisitResult.CONTINUE;
     }
 }

@@ -3,10 +3,7 @@ package the.grid.smp.arte.common.util;
 import org.apache.commons.codec.digest.DigestUtils;
 import the.grid.smp.arte.common.util.lambda.FileVisitor;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +12,9 @@ import java.util.UUID;
 public class Util {
 
     public static void walk(Path path, FileVisitor function) throws IOException {
+        long start = System.currentTimeMillis();
         Files.walkFileTree(path, new SimpleFileVisitor(function));
+        System.out.println("Walked dir in " + (System.currentTimeMillis() - start) + "ms");
     }
 
     public static byte[] hash(Path path) throws IOException {
@@ -28,25 +27,5 @@ public class Util {
 
     public static UUID uuid(Path path) {
         return Util.uuid(path.getFileName().toString());
-    }
-
-    public static File getDefaultResourceFile(Path file) throws IOException {
-        String name = "/" + file.getFileName().toString();
-        URL url = Util.class.getClassLoader().getResource(name);
-
-        if (url == null)
-            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
-
-        return new File(url.getFile());
-    }
-
-    public static InputStream getDefaultResourceStream(Path file) throws IOException {
-        String name = "/" + file.getFileName().toString();
-        InputStream stream = Util.class.getClassLoader().getResourceAsStream(name);
-
-        if (stream == null)
-            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
-
-        return stream;
     }
 }

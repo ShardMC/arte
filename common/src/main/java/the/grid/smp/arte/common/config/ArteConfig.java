@@ -7,6 +7,7 @@ import the.grid.smp.arte.common.util.Util;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -20,11 +21,9 @@ public abstract class ArteConfig {
     protected int port;
     protected String address;
 
+    protected String prompt;
     protected PackMode mode;
     protected boolean scramble;
-
-    protected boolean repackOnStart;
-    protected String prompt;
 
     protected Set<String> namespaces;
     protected boolean whitelist;
@@ -55,7 +54,23 @@ public abstract class ArteConfig {
     protected abstract void dump() throws IOException;
 
     protected InputStream getResource(Path path) throws IOException {
-        return Util.getDefaultResourceStream(path);
+        String name = "/" + path.getFileName().toString();
+        InputStream stream = Util.class.getClassLoader().getResourceAsStream(name);
+
+        if (stream == null)
+            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
+
+        return stream;
+    }
+
+    protected File getResourceFile(Path path) throws IOException {
+        String name = "/" + path.getFileName().toString();
+        URL url = Util.class.getClassLoader().getResource(name);
+
+        if (url == null)
+            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
+
+        return new File(url.getFile());
     }
 
     private void saveDefault() throws IOException {
@@ -108,10 +123,6 @@ public abstract class ArteConfig {
 
     public boolean shouldScramble() {
         return scramble;
-    }
-
-    public boolean repackOnStart() {
-        return repackOnStart;
     }
 
     public String getPrompt() {

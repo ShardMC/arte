@@ -32,23 +32,14 @@ public class PackManager {
         this.output = this.arte.getDataFolder()
                 .toPath().resolve("generated");
 
-        if (this.arte.config().repackOnStart()) {
-            this.reload();
-            return;
-        }
-
-        this.load();
-    }
-
-    public void load() {
-        this.reload(PackMode.CACHED);
+        this.reload();
     }
 
     public void reload() {
         this.reload(this.arte.config().getMode());
     }
 
-    private void reload(PackMode mode) {
+    protected void reload(PackMode mode) {
         this.reload(mode.creator());
     }
 
@@ -67,27 +58,16 @@ public class PackManager {
             FilterList filter = new FilterList(config.getNamespaces(), config.isWhitelist());
             this.zipper.zip(filter, config.shouldScramble(), pack -> {
                 try {
+                    this.arte.logger().info("Processing pack ", pack.toString(), "...");
                     this.server.host(pack);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    this.arte.logger().throwing(e, "Failed to host pack", pack.toString(), "...");
                 }
             });
 
             this.arte.logger().info("Finished reloading pack manager in " + (System.currentTimeMillis() - total) + "ms!");
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void stop() {
-        if (this.arte.config().repackOnStart())
-            return;
-
-        try {
-            if (this.zipper != null)
-                this.zipper.clean();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            this.arte.logger().throwing(e, "Failed to reload pack manager!");
         }
     }
 

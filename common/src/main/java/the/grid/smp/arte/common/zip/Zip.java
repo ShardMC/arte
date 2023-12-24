@@ -29,13 +29,9 @@ public class Zip implements AutoCloseable {
 
     public void add(Path path) throws IOException {
         if (Files.isDirectory(path)) {
-            Util.walk(path, (file, attrs) -> {
-                if (!attrs.isDirectory()) {
-                    this.addFile(file);
-                }
-
-                return FileVisitResult.CONTINUE;
-            });
+            Util.walk(path, (file, attrs) ->
+                    this.addFile(file)
+            );
 
             return;
         }

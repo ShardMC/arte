@@ -107,7 +107,7 @@ public class FabricArteConfig extends ArteConfig {
 
     @Override
     protected void defaults() throws IOException {
-        try (InputStream stream = Util.getDefaultResourceStream(this.file)) {
+        try (InputStream stream = this.getResource(this.file)) {
             this.defaults = new JSONObject(new JSONTokener(stream));
         }
     }

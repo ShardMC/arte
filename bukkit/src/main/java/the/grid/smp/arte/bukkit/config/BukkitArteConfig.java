@@ -5,8 +5,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import the.grid.smp.arte.bukkit.ArtePlugin;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.data.PackMode;
-import the.grid.smp.arte.common.util.Util;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -21,6 +21,8 @@ public class BukkitArteConfig extends ArteConfig {
     public BukkitArteConfig(ArtePlugin arte) {
         super(arte.logger(), arte.getDataFolder().toPath().resolve("config.yml"), false);
         this.arte = arte;
+
+        this.reload();
     }
 
     @Override
@@ -29,11 +31,9 @@ public class BukkitArteConfig extends ArteConfig {
         this.port = this.config.getInt("port");
         this.address = this.config.getString("address");
 
-        this.scramble = this.config.getBoolean("scramble");
-        this.repackOnStart = this.config.getBoolean("repack-on-start");
-
-        this.mode = PackMode.valueOf(this.config.getString("mode"));
         this.prompt = this.config.getString("prompt");
+        this.scramble = this.config.getBoolean("scramble");
+        this.mode = PackMode.valueOf(this.config.getString("mode"));
 
         this.namespaces = new HashSet<>(this.config.getStringList("namespaces"));
         this.whitelist = this.config.getBoolean("whitelist");
@@ -46,11 +46,9 @@ public class BukkitArteConfig extends ArteConfig {
         this.config.set("port", this.port);
         this.config.set("address", this.address);
 
-        this.config.set("scramble", this.scramble);
-        this.config.set("repack-on-restart", this.repackOnStart);
-
-        this.config.set("mode", this.mode.toString());
         this.config.set("prompt", this.prompt);
+        this.config.set("scramble", this.scramble);
+        this.config.set("mode", this.mode.toString());
 
         this.config.set("namespaces", this.namespaces);
         this.config.set("whitelist", this.whitelist);
@@ -60,7 +58,7 @@ public class BukkitArteConfig extends ArteConfig {
 
     @Override
     protected void defaults() throws IOException {
-        FileConfiguration defaults = YamlConfiguration.loadConfiguration(Util.getDefaultResourceFile(this.file));
+        FileConfiguration defaults = YamlConfiguration.loadConfiguration(this.getResourceFile(this.file));
         this.config.setDefaults(defaults);
     }
 
@@ -76,6 +74,11 @@ public class BukkitArteConfig extends ArteConfig {
 
     @Override
     protected InputStream getResource(Path path) {
-        return this.arte.getResource(path.getFileName().toString());
+        return this.arte.getResourceStream(path.getFileName().toString());
+    }
+
+    @Override
+    protected File getResourceFile(Path path) throws IOException {
+        return this.arte.getResourceFile(path.getFileName().toString());
     }
 }

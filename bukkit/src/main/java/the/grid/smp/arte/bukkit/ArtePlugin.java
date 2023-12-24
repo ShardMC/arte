@@ -12,6 +12,11 @@ import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.logger.ArteLogger;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 public final class ArtePlugin extends JavaPlugin implements Arte {
 
     private ArteLogger logger;
@@ -31,7 +36,6 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
 
     @Override
     public void onDisable() {
-        this.packManager.stop();
         this.config.save();
     }
 
@@ -48,6 +52,21 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
     @Override
     public BukkitPackManager getPackManager() {
         return this.packManager;
+    }
+
+    @Override
+    public InputStream getResourceStream(String path) {
+        return this.getResource(path);
+    }
+
+    @Override
+    public File getResourceFile(String path) throws IOException {
+        URL url = this.getClassLoader().getResource(path);
+
+        if (url == null)
+            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + path);
+
+        return new File(url.getFile());
     }
 
     private void command(String name, TabExecutor executor) {

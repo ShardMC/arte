@@ -5,5 +5,5 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 @FunctionalInterface
 public interface FileVisitor {
-    void visit(Path file, BasicFileAttributes attrs);
+    void visit(Path file);
 }

@@ -12,6 +12,7 @@ public class AsyncPackManager extends PackManager {
 
     @Override
     protected void reload(PackZipperCreator zipper) {
+        this.arte.logger().info("Reloading pack manager ASYNChronously!");
         new Thread(() -> super.reload(zipper)).start();
     }
 }

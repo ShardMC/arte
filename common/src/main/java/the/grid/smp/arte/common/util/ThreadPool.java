@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPool {
 
     private final ArteLogger logger;
-    private final ExecutorService executor = Executors.newFixedThreadPool(16);
+    private final ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     public ThreadPool(ArteLogger logger) {
         this.logger = logger;
@@ -23,6 +23,8 @@ public class ThreadPool {
         try {
             this.executor.shutdown();
             this.executor.awaitTermination(Integer.MAX_VALUE, TimeUnit.MILLISECONDS);
+
+            this.executor.shutdownNow();
         } catch(InterruptedException e) {
             this.logger.throwing(e);
         }

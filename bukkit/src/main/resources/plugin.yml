@@ -11,4 +11,4 @@ permissions:
     default: op
 libraries:
   - commons-codec:commons-codec:1.16.0
-  - org.apache.commons:commons-compress:1.25.0
+  - org.apache.commons:commons-compress:1.21

@@ -26,7 +26,7 @@ dependencies {
     implementation("org.json:json:20231013")
     include("org.json:json:20231013")
 
-    include("org.apache.commons:commons-compress:1.25.0")
+    include("org.apache.commons:commons-compress:1.21")
     include("commons-codec:commons-codec:1.16.0")
 }
 

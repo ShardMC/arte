@@ -15,6 +15,6 @@ public record NamespaceGroup(String name, Collection<Path> namespaces) implement
 
     @Override
     public void zip(Zip zip) throws IOException {
-        zip.add(this.namespaces);
+        zip.addDirectories(this.namespaces);
     }
 }

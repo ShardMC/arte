@@ -31,8 +31,6 @@ public class PackManager {
 
         this.output = this.arte.getDataFolder()
                 .toPath().resolve("generated");
-
-        this.reload();
     }
 
     public void reload() {
@@ -44,6 +42,8 @@ public class PackManager {
     }
 
     protected void reload(PackZipperCreator zipper) {
+        this.arte.logger().info("Initializing pack manager reload!");
+
         try {
             long total = System.currentTimeMillis();
             ArteConfig config = this.arte.config();

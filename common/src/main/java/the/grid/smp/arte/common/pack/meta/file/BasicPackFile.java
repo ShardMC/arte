@@ -9,6 +9,6 @@ public record BasicPackFile(Path path) implements PackFile {
 
     @Override
     public void zip(Zip zip) throws IOException {
-        zip.add(this.path);
+        zip.addFile(this.path);
     }
 }

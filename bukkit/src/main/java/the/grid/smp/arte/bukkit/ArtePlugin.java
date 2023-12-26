@@ -32,6 +32,10 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
         this.packManager = new BukkitPackManager(this);
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+
+        this.getServer().getScheduler().runTask(this, () -> {
+            this.packManager.reload();
+        });
     }
 
     @Override

@@ -45,6 +45,7 @@ public abstract class PackZipper {
     }
 
     public void zip(FilterList list, boolean scramble, Consumer<BuiltPack> consumer) throws IOException {
+        this.logger.info("Pack zipper started re-zipping!");
         Context context = this.createContext();
         this.zip(context);
 
@@ -114,7 +115,8 @@ public abstract class PackZipper {
                         Path generated = this.output.resolve(group.name() + ".zip");
                         this.logger.info("Zipping pack to", generated.toString());
 
-                        try (Zip zip = new Zip(this.root, generated, scramble)) {
+                        long start = System.currentTimeMillis();
+                        try (Zip zip = new Zip(this.logger, this.root, generated, scramble)) {
                             group.zip(zip);
 
                             for (PackFile file : this.defaults) {
@@ -122,11 +124,15 @@ public abstract class PackZipper {
                             }
                         }
 
+                        System.out.println(System.currentTimeMillis() - start + " - time to create zip!");
+
                         boolean force = !(list.elements().contains(
                                 group.name())
                         ) && list.whitelist();
 
+                        start = System.currentTimeMillis();
                         BuiltPack pack = new BuiltPack(generated, force);
+                        System.out.println(System.currentTimeMillis() - start + " - time to create builtpack!");
 
                         consumer.accept(pack);
                         packs.add(pack);

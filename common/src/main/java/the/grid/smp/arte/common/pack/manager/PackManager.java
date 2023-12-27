@@ -1,12 +1,12 @@
 package the.grid.smp.arte.common.pack.manager;
 
 import the.grid.smp.arte.common.Arte;
-import the.grid.smp.arte.common.pack.zipper.PackZipper;
-import the.grid.smp.arte.common.util.lambda.PackZipperCreator;
-import the.grid.smp.arte.common.web.WebServer;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.data.FilterList;
 import the.grid.smp.arte.common.data.PackMode;
+import the.grid.smp.arte.common.pack.zipper.PackZipper;
+import the.grid.smp.arte.common.util.lambda.PackZipperCreator;
+import the.grid.smp.arte.common.web.WebServer;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -31,6 +31,8 @@ public class PackManager {
 
         this.output = this.arte.getDataFolder()
                 .toPath().resolve("generated");
+
+        this.reload();
     }
 
     public void reload() {

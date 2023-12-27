@@ -1,4 +1,4 @@
-package the.grid.smp.arte.common.zip;
+package the.grid.smp.arte.common.rewrite;
 
 import org.apache.commons.compress.archivers.zip.ParallelScatterZipCreator;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
@@ -7,8 +7,9 @@ import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.common.util.ThreadPool;
 import the.grid.smp.arte.common.util.Util;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
@@ -43,7 +44,7 @@ public class Zip implements AutoCloseable {
 
         this.scatter.addArchiveEntry(entry, () -> {
             try {
-                return Files.newInputStream(path);
+                return new BufferedInputStream(new FileInputStream(path.toFile()));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

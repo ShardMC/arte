@@ -1,6 +1,6 @@
 package the.grid.smp.arte.common.pack.meta.file;
 
-import the.grid.smp.arte.common.zip.Zip;
+import the.grid.smp.arte.common.rewrite.Zip;
 
 import java.io.IOException;
 

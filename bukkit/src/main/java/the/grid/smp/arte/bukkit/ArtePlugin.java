@@ -5,12 +5,12 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import the.grid.smp.arte.bukkit.command.ArteCommand;
 import the.grid.smp.arte.bukkit.config.BukkitArteConfig;
-import the.grid.smp.arte.bukkit.listener.PlayerListener;
 import the.grid.smp.arte.bukkit.logger.BukkitArteLogger;
 import the.grid.smp.arte.bukkit.pack.BukkitPackManager;
 import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.logger.ArteLogger;
+import the.grid.smp.arte.common.util.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,17 +25,12 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
 
     @Override
     public void onEnable() {
+        Util.init();
         this.logger = new BukkitArteLogger(this);
         this.config = new BukkitArteConfig(this);
 
         this.command("arte", new ArteCommand(this));
         this.packManager = new BukkitPackManager(this);
-
-        this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
-
-        this.getServer().getScheduler().runTask(this, () -> {
-            this.packManager.reload();
-        });
     }
 
     @Override

@@ -1,13 +1,22 @@
 package the.grid.smp.arte.bukkit.pack;
 
 import org.bukkit.entity.Player;
-import the.grid.smp.arte.common.Arte;
-import the.grid.smp.arte.common.pack.manager.impl.AsyncPackManager;
+import the.grid.smp.arte.bukkit.ArtePlugin;
+import the.grid.smp.arte.common.pack.manager.PackManager;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
+import the.grid.smp.arte.common.rewrite.Zip;
+import the.grid.smp.arte.common.util.lambda.PackZipperCreator;
+import the.grid.smp.arte.common.web.WebServer;
 
-public class BukkitPackManager extends AsyncPackManager {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Stream;
 
-    public BukkitPackManager(Arte arte) {
+public class BukkitPackManager extends PackManager {
+
+    public BukkitPackManager(ArtePlugin arte) {
         super(arte);
     }
 

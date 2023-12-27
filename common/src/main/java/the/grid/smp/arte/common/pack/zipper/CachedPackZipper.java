@@ -4,6 +4,7 @@ import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.data.FilterList;
 import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
+import the.grid.smp.arte.common.pack.meta.file.Namespace;
 import the.grid.smp.arte.common.pack.meta.file.NamespaceGroup;
 import the.grid.smp.arte.common.util.ThreadPool;
 
@@ -36,7 +37,7 @@ public class CachedPackZipper extends BasicPackZipper {
             List<BuiltPack> packs = new ArrayList<>();
             ThreadPool pool = new ThreadPool(this.logger);
 
-            for (NamespaceGroup namespace : this.groups) {
+            for (Namespace namespace : this.groups) {
                 pool.add(() -> {
                     try {
                         Path generated = this.output.resolve(namespace.name() + ".zip");

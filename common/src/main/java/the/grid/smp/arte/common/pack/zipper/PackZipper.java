@@ -4,10 +4,11 @@ import the.grid.smp.arte.common.data.FilterList;
 import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.common.pack.meta.file.BasicPackFile;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
+import the.grid.smp.arte.common.pack.meta.file.Namespace;
 import the.grid.smp.arte.common.pack.meta.file.PackFile;
 import the.grid.smp.arte.common.pack.meta.file.NamespaceGroup;
+import the.grid.smp.arte.common.rewrite.Zip;
 import the.grid.smp.arte.common.util.ThreadPool;
-import the.grid.smp.arte.common.zip.Zip;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -79,7 +80,7 @@ public abstract class PackZipper {
         protected final Path root;
         protected final Path output;
 
-        protected final List<NamespaceGroup> groups = new ArrayList<>();
+        protected final List<Namespace> groups = new ArrayList<>();
         protected final List<PackFile> defaults = new ArrayList<>();
 
         public Context(ArteLogger logger, Path root, Path output, String... defaults) {
@@ -94,29 +95,35 @@ public abstract class PackZipper {
         }
 
         public Context addNamespace(Path... namespaces) {
-            StringBuilder builder = new StringBuilder();
+            /*StringBuilder builder = new StringBuilder();
 
             for (Path path : namespaces) {
                 builder.append(path.getFileName().toString());
             }
 
             this.groups.add(new NamespaceGroup(builder.toString(), namespaces));
-            this.logger.info("Adding namespace(s) to zip: '", builder.toString(), "'");
+            this.logger.info("Adding namespace(s) to zip: '", builder.toString(), "'");*/
             return this;
         }
 
-        public Collection<BuiltPack> zip(FilterList list, boolean scramble, Consumer<BuiltPack> consumer) {
+        public Context addNamespace(String name, Collection<Path> files) {
+            this.groups.add(new Namespace(name, files));
+            this.logger.info("Adding namespace(s) to zip: '", name, "'");
+            return this;
+        }
+
+        public Collection<BuiltPack> zip(FilterList list, boolean scramble, Consumer<BuiltPack> consumer) throws IOException {
             List<BuiltPack> packs = new ArrayList<>();
             ThreadPool pool = new ThreadPool(this.logger);
 
-            for (NamespaceGroup group : this.groups) {
+            for (Namespace group : this.groups) {
                 pool.add(() -> {
                     try {
                         Path generated = this.output.resolve(group.name() + ".zip");
                         this.logger.info("Zipping pack to", generated.toString());
 
                         long start = System.currentTimeMillis();
-                        try (Zip zip = new Zip(this.logger, this.root, generated, scramble)) {
+                        try (Zip zip = new Zip(this.logger, this.root, generated, false)) {
                             group.zip(zip);
 
                             for (PackFile file : this.defaults) {
@@ -124,7 +131,7 @@ public abstract class PackZipper {
                             }
                         }
 
-                        System.out.println(System.currentTimeMillis() - start + " - time to create zip!");
+                        System.out.println(System.currentTimeMillis() - start + " - time to zip!");
 
                         boolean force = !(list.elements().contains(
                                 group.name())
@@ -137,10 +144,22 @@ public abstract class PackZipper {
                         consumer.accept(pack);
                         packs.add(pack);
                     } catch (IOException | ExecutionException | InterruptedException e) {
+
                         this.logger.throwing(e, "Uh-oh. This shouldn't happen!");
                     }
                 });
             }
+            /*Path assets = this.root.resolve("assets");
+            try (Stream<Path> stream = Files.list(assets)) {
+                stream.forEach(path -> pool.add(() -> {
+                    String name = path.getFileName().toString() + ".zip";
+                    try (Zip zip = new Zip(this.logger, this.root, this.output.resolve(name), false)) {
+                        zip.addDirectory(path);
+                    } catch (IOException | ExecutionException | InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }));
+            }*/
 
             pool.start();
             return packs;

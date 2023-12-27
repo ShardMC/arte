@@ -4,15 +4,6 @@ import org.bukkit.entity.Player;
 import the.grid.smp.arte.bukkit.ArtePlugin;
 import the.grid.smp.arte.common.pack.manager.PackManager;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
-import the.grid.smp.arte.common.rewrite.Zip;
-import the.grid.smp.arte.common.util.lambda.PackZipperCreator;
-import the.grid.smp.arte.common.web.WebServer;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Stream;
 
 public class BukkitPackManager extends PackManager {
 

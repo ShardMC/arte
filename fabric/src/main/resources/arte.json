@@ -6,7 +6,7 @@
   "repack-on-start": true,
 
   "mode": "BASIC",
-  "prompt": "Hello! Please download the resourcepack!",
+  "prompt": "Hello! Please download the resource pack!",
 
   "namespaces": [],
   "whitelist": true,

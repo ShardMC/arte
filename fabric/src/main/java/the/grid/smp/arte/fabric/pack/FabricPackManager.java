@@ -4,10 +4,11 @@ import net.minecraft.network.packet.s2c.common.ResourcePackSendS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import the.grid.smp.arte.common.Arte;
-import the.grid.smp.arte.common.pack.manager.impl.AsyncPackManager;
+import the.grid.smp.arte.common.pack.manager.PackManager;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
 
-public class FabricPackManager extends AsyncPackManager {
+public class FabricPackManager extends PackManager {
+
     public FabricPackManager(Arte arte) {
         super(arte);
     }

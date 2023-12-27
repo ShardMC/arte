@@ -10,7 +10,6 @@ import the.grid.smp.arte.bukkit.pack.BukkitPackManager;
 import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.logger.ArteLogger;
-import the.grid.smp.arte.common.util.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +24,6 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
 
     @Override
     public void onEnable() {
-        Util.init();
         this.logger = new BukkitArteLogger(this);
         this.config = new BukkitArteConfig(this);
 
@@ -51,6 +49,11 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
     @Override
     public BukkitPackManager getPackManager() {
         return this.packManager;
+    }
+
+    @Override
+    public File getConfigFile() {
+        return new File(this.getDataFolder(), "config.yml");
     }
 
     @Override

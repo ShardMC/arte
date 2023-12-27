@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.data.PackMode;
-import the.grid.smp.arte.common.util.Util;
 import the.grid.smp.arte.fabric.ArteMod;
 
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class FabricArteConfig extends ArteConfig {
     private JSONObject defaults;
 
     public FabricArteConfig(ArteMod mod) {
-        super(mod.logger(), mod.getConfigFile());
+        super(mod);
     }
 
     private void read(String name, BiConsumer<JSONObject, String> consumer) {
@@ -38,17 +37,6 @@ public class FabricArteConfig extends ArteConfig {
         for (Object obj : array) {
             collection.add(map.apply(obj));
         }
-    }
-
-    private static <T> List<T> asList(JSONArray array, Function<Object, T> map) {
-        List<T> list = new ArrayList<>();
-        FabricArteConfig.copy(list, array, map);
-
-        return list;
-    }
-
-    private static List<String> asList(JSONArray array) {
-        return FabricArteConfig.asList(array, Object::toString);
     }
 
     private static <T> Set<T> asSet(JSONArray array, Function<Object, T> map) {
@@ -67,42 +55,25 @@ public class FabricArteConfig extends ArteConfig {
         this.read("port", (obj, s) -> this.port = obj.getInt(s));
         this.read("address", (obj, s) -> this.address = obj.getString(s));
 
-        this.read("scramble", (obj, s) -> this.scramble = obj.getBoolean(s));
-        this.read("repack-on-start", (obj, s) -> this.repackOnStart = obj.getBoolean(s));
-
-        this.read("mode", (obj, s) -> this.mode = obj.getEnum(PackMode.class, s));
         this.read("prompt", (obj, s) -> this.prompt = obj.getString(s));
+        this.read("scramble", (obj, s) -> this.scramble = obj.getBoolean(s));
+        this.read("mode", (obj, s) -> this.mode = obj.getEnum(PackMode.class, s));
 
         this.read("namespaces", (obj, s) -> this.namespaces = FabricArteConfig.asSet(obj.getJSONArray(s)));
         this.read("whitelist", (obj, s) -> this.whitelist = obj.getBoolean(s));
-
-        this.read("groups", (obj, s) -> {
-            JSONArray array = obj.getJSONArray(s);
-            List<List<String>> groups = new ArrayList<>();
-
-            for (Object object : array) {
-                groups.add(FabricArteConfig.asList((JSONArray) object));
-            }
-
-            this.groups = groups;
-        });
     }
 
     @Override
-    protected void write() throws IOException {
+    protected void write() {
         this.config.put("port", this.port);
         this.config.put("address", this.address);
 
-        this.config.put("scramble", this.scramble);
-        this.config.put("repack-on-restart", this.repackOnStart);
-
-        this.config.put("mode", this.mode.toString());
         this.config.put("prompt", this.prompt);
+        this.config.put("scramble", this.scramble);
+        this.config.put("mode", this.mode.toString());
 
         this.config.put("namespaces", this.namespaces);
         this.config.put("whitelist", this.whitelist);
-
-        this.config.put("groups", this.groups);
     }
 
     @Override

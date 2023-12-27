@@ -101,7 +101,7 @@ This is an example of how to list things you need to use the software and how to
 [![Requires Fabric API][fabric-api-shield]][fabric-api-url]
 
 #### On Spigot:
-* Requires [Communis][communis-url]
+* Requires nothing!
 
 ### Installation
 [![Modrinth][modrinth-shield]][modrinth-url]
@@ -141,6 +141,7 @@ _For more examples, please refer to the [Documentation](https://thegridsmp.githu
 - [ ] More zip splitter types
     - [ ] Sized
     - [ ] Smart
+    - [ ] Grouped
 
 See the [open issues][github-issues-url] for a full list of proposed features (and known issues).
 
@@ -214,4 +215,4 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 [fabric-api-url]: https://modrinth.com/mod/fabric-api
 [rptweaks-url]: https://modrinth.com/mod/resource-pack-tweaks
 [communis-url]: https://github.com/TheGridSMP/communis
-[speed-comparison]: images/screenshot.png
+[speed-comparison]: images/speed-comparison.gif

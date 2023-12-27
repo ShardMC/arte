@@ -18,9 +18,6 @@ tasks.shadowJar {
     dependencies {
         exclude(dependency("org.apache.commons:commons-compress:1.21"))
         exclude(dependency("commons-codec:commons-codec:1.16.0"))
-
-        //bound to spigot!
-        exclude(dependency("commons-io:commons-io:2.13.0"))
     }
 }
 

@@ -60,7 +60,7 @@ public class PackManager {
             FilterList filter = new FilterList(config.getNamespaces(), config.isWhitelist());
             this.zipper.zip(filter, config.shouldScramble(), pack -> {
                 try {
-                    this.arte.logger().info("Processing pack ", pack.toString(), "...");
+                    this.arte.logger().info("Processing pack part", pack.getName(), "...");
                     this.server.host(pack);
                 } catch (IOException e) {
                     this.arte.logger().throwing(e, "Failed to host pack", pack.toString(), "...");

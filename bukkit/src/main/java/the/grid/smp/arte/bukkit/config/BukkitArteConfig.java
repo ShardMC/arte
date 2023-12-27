@@ -6,27 +6,18 @@ import the.grid.smp.arte.bukkit.ArtePlugin;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.data.PackMode;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.HashSet;
-import java.util.List;
 
 public class BukkitArteConfig extends ArteConfig {
 
-    private final ArtePlugin arte;
     private FileConfiguration config;
 
     public BukkitArteConfig(ArtePlugin arte) {
-        super(arte.logger(), arte.getDataFolder().toPath().resolve("config.yml"), false);
-        this.arte = arte;
-
-        this.reload();
+        super(arte);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected void read() {
         this.port = this.config.getInt("port");
         this.address = this.config.getString("address");
@@ -37,8 +28,6 @@ public class BukkitArteConfig extends ArteConfig {
 
         this.namespaces = new HashSet<>(this.config.getStringList("namespaces"));
         this.whitelist = this.config.getBoolean("whitelist");
-
-        this.groups = (List<List<String>>) this.config.getList("groups");
     }
 
     @Override
@@ -52,8 +41,6 @@ public class BukkitArteConfig extends ArteConfig {
 
         this.config.set("namespaces", this.namespaces);
         this.config.set("whitelist", this.whitelist);
-
-        this.config.set("groups", this.groups);
     }
 
     @Override
@@ -70,15 +57,5 @@ public class BukkitArteConfig extends ArteConfig {
     @Override
     protected void dump() throws IOException {
         this.config.save(this.file.toFile());
-    }
-
-    @Override
-    protected InputStream getResource(Path path) {
-        return this.arte.getResourceStream(path.getFileName().toString());
-    }
-
-    @Override
-    protected File getResourceFile(Path path) throws IOException {
-        return this.arte.getResourceFile(path.getFileName().toString());
     }
 }

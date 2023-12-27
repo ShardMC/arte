@@ -3,7 +3,7 @@ address: 0.0.0.0
 
 mode: BASIC
 scramble: true
-prompt: 'Hello! Please download the resourcepack!'
+prompt: 'Hello! Please download the resource pack!'
 
 # optionals. if whitelist is true, then the list represents optional packs
 namespaces: []

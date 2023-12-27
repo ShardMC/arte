@@ -1,7 +1,8 @@
-package the.grid.smp.arte.common.pack.zipper;
+package the.grid.smp.arte.common.pack.zipper.impl;
 
 import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.logger.ArteLogger;
+import the.grid.smp.arte.common.pack.zipper.PackZipper;
 import the.grid.smp.arte.common.util.Util;
 
 import java.io.IOException;
@@ -22,14 +23,10 @@ public class BasicPackZipper extends PackZipper {
 
         try (Stream<Path> stream = Files.list(this.assets)) {
             stream.parallel().forEach(path -> {
-                //try {
-                    List<Path> list = new ArrayList<>();
-                    Util.walk(logger, path, list::add);
+                List<Path> list = new ArrayList<>();
+                Util.walk(logger, path, list::add);
 
-                    this.files.put(path.getFileName().toString(), list);
-                /*} catch (IOException e) {
-                    throw new RuntimeException(e);
-                }*/
+                this.files.put(path.getFileName().toString(), list);
             });
         }
     }
@@ -39,7 +36,7 @@ public class BasicPackZipper extends PackZipper {
     }
 
     @Override
-    protected void zip(Context context) throws IOException {
+    protected void zip(Context context) {
         for (Map.Entry<String, List<Path>> entry : this.files.entrySet()) {
             context.addNamespace(entry.getKey(), entry.getValue());
         }

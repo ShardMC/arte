@@ -1,11 +1,10 @@
-package the.grid.smp.arte.common.pack.zipper;
+package the.grid.smp.arte.common.pack.zipper.impl;
 
 import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.data.FilterList;
 import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.common.pack.meta.BuiltPack;
 import the.grid.smp.arte.common.pack.meta.file.Namespace;
-import the.grid.smp.arte.common.pack.meta.file.NamespaceGroup;
 import the.grid.smp.arte.common.util.ThreadPool;
 
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class CachedPackZipper extends BasicPackZipper {
         return new CachedContext(this.logger, this.root, this.output, "pack.mcmeta", "pack.png");
     }
 
-    public static class CachedContext extends PackZipper.Context {
+    public static class CachedContext extends Context {
 
         public CachedContext(ArteLogger logger, Path root, Path output, String... defaults) {
             super(logger, root, output, defaults);

@@ -8,6 +8,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.logger.ArteLogger;
+import the.grid.smp.arte.common.util.Util;
 import the.grid.smp.arte.fabric.command.ArteCommand;
 import the.grid.smp.arte.fabric.config.FabricArteConfig;
 import the.grid.smp.arte.fabric.listener.PlayerListener;
@@ -15,6 +16,8 @@ import the.grid.smp.arte.fabric.logger.FabricArteLogger;
 import the.grid.smp.arte.fabric.pack.FabricPackManager;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 public class ArteMod implements DedicatedServerModInitializer, Arte {
 
@@ -30,10 +33,7 @@ public class ArteMod implements DedicatedServerModInitializer, Arte {
         CommandRegistrationCallback.EVENT.register(new ArteCommand(this));
         ServerPlayConnectionEvents.JOIN.register(new PlayerListener(this));
 
-        ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
-            this.packManager.stop();
-            this.config.save();
-        });
+        ServerLifecycleEvents.SERVER_STOPPING.register(server -> this.config.save());
     }
 
     @Override
@@ -56,7 +56,19 @@ public class ArteMod implements DedicatedServerModInitializer, Arte {
         return FabricLoader.getInstance().getGameDir().resolve("arte").toFile();
     }
 
+    @Override
     public File getConfigFile() {
         return FabricLoader.getInstance().getConfigDir().resolve("arte.json").toFile();
+    }
+
+    @Override
+    public File getResourceFile(String path) throws IOException {
+        String name = "/" + path;
+        URL url = Util.class.getClassLoader().getResource(name);
+
+        if (url == null)
+            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
+
+        return new File(url.getFile());
     }
 }

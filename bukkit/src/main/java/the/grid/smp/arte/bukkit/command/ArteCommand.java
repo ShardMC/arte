@@ -11,6 +11,7 @@ import the.grid.smp.arte.bukkit.ArtePlugin;
 import java.io.IOException;
 import java.util.List;
 
+@SuppressWarnings("NullableProblems")
 public class ArteCommand implements TabExecutor {
 
     private final ArtePlugin arte;

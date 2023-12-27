@@ -200,7 +200,7 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [modrinth-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/modrinth_64h.png
-[modrinth-url]: https://example.com
+[modrinth-url]: https://modrinth.com/mod/arte
 [spigot-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/spigot_64h.png
 [spigot-url]: https://example.com
 [fabric-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/fabric_64h.png

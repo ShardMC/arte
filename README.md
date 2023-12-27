@@ -41,7 +41,7 @@
   ![Quilt][quilt-shield]
 </div>
 
-
+> **NOTE: Arte works only on Minecraft 1.20.3+**
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -71,7 +71,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About Arte
 
-[![Arte Speed Comparison][speed-comparison]][github-url]
+<!--[![Arte Speed Comparison][speed-comparison]][github-url]-->
 
 So, what does it do? Simple! Let's say you have a BIG server resource pack.
 Every time you make a little change, you will have to manually re-host it somewhere, and players will have to fully re-download it.
@@ -82,7 +82,7 @@ and sends each one as a different server resource pack!
 > A: In 1.20.3 Mojang added a new feature that allows servers to send multiple server resource packs at a time! 
 
 Players will only re-download the parts that actually need updating, and apply other server packs.
-(Tip: arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour)
+(Tip: arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour).
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -107,8 +107,10 @@ This is an example of how to list things you need to use the software and how to
 [![Modrinth][modrinth-shield]][modrinth-url]
 [![GitHub][github-shield]][github-url]
 [![Spigot][spigot-shield]][spigot-url]
+[![Polymart][polymart-shield]][polymart-url]
+[![Hangar][hangar-shield]][hangar-url]
 
-_Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][spigot-url] or [GitHub][github-releases-url] releases._
+_Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][spigot-url], [Polymart][polymart-url], [Hangar][hangar-url] or [GitHub Releases][github-releases-url]._
 
 1. Start your server
 2. Open arte's config file
@@ -205,6 +207,10 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 [spigot-url]: https://example.com
 [fabric-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/fabric_64h.png
 [quilt-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/quilt_64h.png
+[polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
+[polymart-url]: https://example.com
+[hangar-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/hangar_64h.png
+[hangar-url]: https://example.com
 [discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
 [discord-url]: https://discord.gg/CvSkNeQ9uj
 [github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png

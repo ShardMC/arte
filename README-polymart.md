@@ -57,11 +57,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -103,9 +99,9 @@ This is an example of how to list things you need to use the software and how to
 * Requires nothing!
 
 ### Installation
-[![Modrinth][modrinth-shield]][modrinth-url]
 [![Spigot][spigot-shield]][spigot-url]
-[![Polymart][polymart-shield]][polymart-url]
+[![Modrinth][modrinth-shield]][modrinth-url]
+[![GitHub][github-shield]][github-url]
 [![Hangar][hangar-shield]][hangar-url]
 
 _Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][spigot-url], [Polymart][polymart-url], [Hangar][hangar-url] or [GitHub Releases][github-releases-url]._
@@ -113,7 +109,7 @@ _Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][
 1. Start your server
 2. Open arte's config file
 3. Set `address` to your server's public address
-4. Open the port specified in config (`6148`) or put already opened port in the `port` field in config.
+4. Open the port specified in config (`1648`) or put already opened port in the `port` field in config.
 5. Restart your server
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -134,64 +130,10 @@ _For more examples, please refer to the [Documentation](https://thegridsmp.githu
 
 
 
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Initial stable release
-- [ ] More zip splitter types
-    - [ ] Sized
-    - [ ] Smart
-    - [ ] Grouped
-
-See the [open issues][github-issues-url] for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
 [![Discord][discord-shield]][discord-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [Devin's Badges](https://github.com/intergrav/devins-badges)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [GitHub Pages](https://pages.github.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

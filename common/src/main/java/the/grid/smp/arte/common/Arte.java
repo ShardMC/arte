@@ -5,9 +5,9 @@ import the.grid.smp.arte.common.logger.ArteLogger;
 import the.grid.smp.arte.common.pack.manager.PackManager;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 public interface Arte {
     ArteLogger logger();
@@ -17,9 +17,13 @@ public interface Arte {
     File getDataFolder();
     File getConfigFile();
 
+    URL getResourceUrl(String path) throws IOException;
+
     default InputStream getResourceStream(String path) throws IOException {
-        return new FileInputStream(this.getResourceFile(path));
+        return this.getResourceUrl(path).openStream();
     }
 
-    File getResourceFile(String path) throws IOException;
+    default File getResourceFile(String path) throws IOException {
+        return new File(this.getResourceUrl(path).getFile());
+    }
 }

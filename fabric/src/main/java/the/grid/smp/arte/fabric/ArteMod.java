@@ -17,17 +17,19 @@ import the.grid.smp.arte.fabric.pack.FabricPackManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 public class ArteMod implements DedicatedServerModInitializer, Arte {
 
-    private final ArteLogger logger = new FabricArteLogger("arte");
+    private ArteLogger logger;
     private ArteConfig config;
-
     private FabricPackManager packManager;
 
     public void onInitializeServer() {
+        this.logger = new FabricArteLogger("arte");
         this.config = new FabricArteConfig(this);
+
         this.packManager = new FabricPackManager(this);
 
         CommandRegistrationCallback.EVENT.register(new ArteCommand(this));
@@ -62,13 +64,12 @@ public class ArteMod implements DedicatedServerModInitializer, Arte {
     }
 
     @Override
-    public File getResourceFile(String path) throws IOException {
-        String name = "/" + path;
-        URL url = Util.class.getClassLoader().getResource(name);
+    public URL getResourceUrl(String path) throws IOException {
+        URL url = this.getClass().getClassLoader().getResource(path);
 
         if (url == null)
-            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + name);
+            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + path);
 
-        return new File(url.getFile());
+        return url;
     }
 }

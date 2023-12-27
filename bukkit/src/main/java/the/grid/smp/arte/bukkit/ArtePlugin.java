@@ -13,7 +13,6 @@ import the.grid.smp.arte.common.logger.ArteLogger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
 public final class ArtePlugin extends JavaPlugin implements Arte {
@@ -57,18 +56,13 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
     }
 
     @Override
-    public InputStream getResourceStream(String path) {
-        return this.getResource(path);
-    }
-
-    @Override
-    public File getResourceFile(String path) throws IOException {
+    public URL getResourceUrl(String path) throws IOException {
         URL url = this.getClassLoader().getResource(path);
 
         if (url == null)
             throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + path);
 
-        return new File(url.getFile());
+        return url;
     }
 
     private void command(String name, TabExecutor executor) {

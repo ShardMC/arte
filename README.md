@@ -95,7 +95,7 @@ To set up arte on your server follow these steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Different mod-loader require different dependencies!
 #### On Fabric:
 [![Requires Fabric API][fabric-api-shield]][fabric-api-url]
 

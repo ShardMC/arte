@@ -17,7 +17,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/TheGridSMP/arte">
-    <img src="images/logo-upscaled.png" alt="Logo" width="96" height="96">
+    <img src="https://raw.githubusercontent.com/TheGridSMP/arte/main/images/logo-upscaled.png" alt="Logo" width="96" height="96">
   </a>
 
   <h3 align="center">ᴀʀᴛᴇ</h3>

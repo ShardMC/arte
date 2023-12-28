@@ -108,7 +108,7 @@ Different mod-loader require different dependencies!
 [![Spigot][spigot-shield]][spigot-url]
 [![Polymart][polymart-shield]][polymart-url]
 
-_Download and install the mod or plugin from [Modrinth][modrinth-url], [Hangar][hangar-url], [Polymart][polymart-url], [Spigot][spigot-url] or [GitHub Releases][github-releases-url]._
+_Download and install the mod or plugin from [Modrinth][modrinth-versions-url], [Hangar][hangar-versions-url], [Polymart][polymart-updates-url], [Spigot][spigot-updates-url] or [GitHub Releases][github-releases-url]._
 
 1. Start your server
 2. Open arte's config file
@@ -199,24 +199,36 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[modrinth-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/modrinth_64h.png
-[modrinth-url]: https://modrinth.com/mod/arte
 [spigot-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/spigot_64h.png
-[spigot-url]: https://www.spigotmc.org/resources/arte.114150/
 [fabric-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/fabric_64h.png
-[quilt-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/quilt_64h.png
 [noforge-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/unsupported/forge_64h.png
-[polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
-[polymart-url]: https://polymart.org/resource/arte.5242
-[hangar-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/hangar_64h.png
-[hangar-url]: https://hangar.papermc.io/Arte/Arte
-[discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
-[discord-url]: https://discord.gg/CqVAzakrqx
-[github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png
-[github-url]: https://github.com/ShardMC/arte
-[github-issues-url]: https://github.com/ShardMC/arte/issues
-[github-releases-url]: https://github.com/ShardMC/arte/releases
+
+[rptweaks-url]: https://modrinth.com/mod/resource-pack-tweaks
+
 [fabric-api-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/requires/fabric-api_64h.png
 [fabric-api-url]: https://modrinth.com/mod/fabric-api
-[rptweaks-url]: https://modrinth.com/mod/resource-pack-tweaks
-[speed-comparison]: images/speed-comparison.gif
+
+[spigot-url]: https://www.spigotmc.org/resources/arte.114150/
+
+[modrinth-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/modrinth_64h.png
+[modrinth-url]: https://modrinth.com/mod/arte
+[github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png
+[github-url]: https://github.com/ShardMC/arte
+[hangar-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/hangar_64h.png
+[hangar-url]: https://hangar.papermc.io/Arte/Arte
+[polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
+[polymart-url]: https://polymart.org/resource/arte.5242
+[spigot-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/spigot_64h.png
+[spigot-url]: https://www.spigotmc.org/resources/arte.114150/
+
+[modrinth-versions-url]: https://modrinth.com/mod/arte/versions
+[hangar-versions-url]: https://hangar.papermc.io/Arte/Arte/versions
+[polymart-updates-url]: https://polymart.org/resource/arte.5242/updates
+[spigot-updates-url]: https://www.spigotmc.org/resources/arte.114150/updates
+[github-releases-url]: https://github.com/ShardMC/arte/releases
+
+[github-issues-url]: https://github.com/ShardMC/arte/issues
+
+[discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
+[discord-url]: https://discord.gg/CqVAzakrqx
+

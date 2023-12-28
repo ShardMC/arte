@@ -36,8 +36,6 @@
   </p>
 
   ![Spigot][spigot-shield]
-  ![Fabric][fabric-shield]
-  ![No Forge][noforge-shield]
 </div>
 
 > **NOTE: Arte works only on Minecraft 1.20.3+**

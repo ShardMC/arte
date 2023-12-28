@@ -123,7 +123,7 @@ Put your resource pack source (not zipped) in the `arte/resourcepack/` folder an
 > Note: Arte folder can be different depending on your server! If you use Fabric or Quilt, it's folder will be in server's folder.
 > If you use Spigot, then arte's folder will be located in `plugins/arte/`.
 
-_For more examples, please refer to the [Documentation](https://thegridsmp.github.io/projects/)._
+_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/arte/about)._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

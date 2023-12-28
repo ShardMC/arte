@@ -25,7 +25,7 @@
   <p align="center">
     Send server resource packs in spoon-sized bites!
     <br />
-    <a href="https://shardmc.github.io/projects/"><strong>Explore the docs »</strong></a>
+    <a href="https://shardmc.github.io/projects/arte/about"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/ShardMC/arte">View Demo</a>
@@ -128,7 +128,7 @@ Put your resource pack source (not zipped) in the `arte/resourcepack/` folder an
 > Arte folder can be different depending on your server! If you use Fabric or Quilt, it's folder will be in server's folder.
 > If you use Spigot, then arte's folder will be located in `plugins/arte/`
 
-_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/)._
+_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/arte/about)._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

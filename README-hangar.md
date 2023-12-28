@@ -90,12 +90,12 @@ Players will only re-download the parts that actually need updating, and apply o
 To set up arte on your server follow these steps.
 
 ### Installation
-[![Spigot][spigot-shield]][spigot-url]
 [![Modrinth][modrinth-shield]][modrinth-url]
 [![GitHub][github-shield]][github-url]
+[![Spigot][spigot-shield]][spigot-url]
 [![Polymart][polymart-shield]][polymart-url]
 
-_Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][spigot-url], [Polymart][polymart-url], [Hangar][hangar-url] or [GitHub Releases][github-releases-url]._
+_Download and install the mod or plugin from [Modrinth][modrinth-url], [Hangar][hangar-url], [Polymart][polymart-url], [Spigot][spigot-url] or [GitHub Releases][github-releases-url]._
 
 1. Start your server
 2. Open arte's config file
@@ -139,7 +139,7 @@ _For more examples, please refer to the [Documentation](https://shardmc.github.i
 [polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
 [polymart-url]: https://polymart.org/resource/arte.5242
 [hangar-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/hangar_64h.png
-[hangar-url]: https://hangar.papermc.io/DrTheodor/Arte
+[hangar-url]: https://hangar.papermc.io/Arte/Arte
 [discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
 [discord-url]: https://discord.gg/CqVAzakrqx
 [github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png

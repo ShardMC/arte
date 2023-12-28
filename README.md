@@ -20,7 +20,7 @@
     <img src="images/logo-upscaled.png" alt="Logo" width="96" height="96">
   </a>
 
-  <h3 align="center">ᴀʀᴛᴇ</h3>
+  <h3 align="center">Arte</h3>
 
   <p align="center">
     Send server resource packs in spoon-sized bites!

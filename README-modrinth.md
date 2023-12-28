@@ -80,9 +80,6 @@ Players will only re-download the parts that actually need updating, and apply o
 (Tip: arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour).
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -112,8 +109,6 @@ _Download and install the mod or plugin from [Modrinth][modrinth-versions-url], 
 4. Open the port specified in config (`1648`) or put already opened port in the `port` field in config.
 5. Restart your server
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
@@ -125,16 +120,12 @@ Put your resource pack source (not zipped) in the `arte/resourcepack/` folder an
 
 _For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/arte/about)._
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
 ## Contact
 
 [![Discord][discord-shield]][discord-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 

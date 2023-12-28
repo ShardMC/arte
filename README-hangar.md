@@ -16,8 +16,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/TheGridSMP/arte">
-    <img src="https://raw.githubusercontent.com/TheGridSMP/arte/main/images/logo-upscaled.png" alt="Logo" width="96" height="96">
+  <a href="https://github.com/ShardMC/arte">
+    <img src="https://raw.githubusercontent.com/ShardMC/arte/main/images/logo-upscaled.png" alt="Logo" width="96" height="96">
   </a>
 
   <h3 align="center">ᴀʀᴛᴇ</h3>
@@ -25,14 +25,14 @@
   <p align="center">
     Send server resource packs in spoon-sized bites!
     <br />
-    <a href="https://thegridsmp.github.io/projects/"><strong>Explore the docs »</strong></a>
+    <a href="https://shardmc.github.io/projects/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/TheGridSMP/arte">View Demo</a>
+    <a href="https://github.com/ShardMC/arte">View Demo</a>
     ·
-    <a href="https://github.com/TheGridSMP/arte/issues">Report Bug</a>
+    <a href="https://github.com/ShardMC/arte/issues">Report Bug</a>
     ·
-    <a href="https://github.com/TheGridSMP/arte/issues">Request Feature</a>
+    <a href="https://github.com/ShardMC/arte/issues">Request Feature</a>
   </p>
 
   ![Spigot][spigot-shield]
@@ -112,7 +112,7 @@ _Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][
 
 Put your resource pack source (not zipped) in the `plugins/arte/resourcepack/` folder and run `/arte reload`.
 
-_For more examples, please refer to the [Documentation](https://thegridsmp.github.io/projects/)._
+_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/)._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -143,9 +143,8 @@ _For more examples, please refer to the [Documentation](https://thegridsmp.githu
 [discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
 [discord-url]: https://discord.gg/CqVAzakrqx
 [github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png
-[github-url]: https://github.com/TheGridSMP/arte
-[github-issues-url]: https://github.com/TheGridSMP/arte/issues
-[github-releases-url]: https://github.com/TheGridSMP/arte/releases
+[github-url]: https://github.com/ShardMC/arte
+[github-issues-url]: https://github.com/ShardMC/arte/issues
+[github-releases-url]: https://github.com/ShardMC/arte/releases
 [rptweaks-url]: https://modrinth.com/mod/resource-pack-tweaks
-[communis-url]: https://github.com/TheGridSMP/communis
 [speed-comparison]: images/speed-comparison.gif

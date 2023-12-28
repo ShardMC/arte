@@ -13,6 +13,7 @@ import java.nio.file.Path;
 public class WebServer {
 
     private final String address;
+
     private boolean enabled = false;
     private HttpServer server;
 

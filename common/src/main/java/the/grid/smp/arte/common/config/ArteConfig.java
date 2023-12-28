@@ -55,6 +55,8 @@ public abstract class ArteConfig {
 
     private void saveDefault() throws IOException {
         this.arte.logger().info("Config file doesn't exist! Copying from files...");
+
+        Files.createDirectories(this.file.getParent());
         try (InputStream stream = this.getResource(this.file)) {
             Files.copy(stream, this.file);
         }
@@ -75,8 +77,6 @@ public abstract class ArteConfig {
 
     public void save() {
         try {
-            Files.createDirectories(this.file.getParent());
-
             if (Files.notExists(this.file)) {
                 this.saveDefault();
                 this.reload();

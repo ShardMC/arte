@@ -5,6 +5,7 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import the.grid.smp.arte.bukkit.command.ArteCommand;
 import the.grid.smp.arte.bukkit.config.BukkitArteConfig;
+import the.grid.smp.arte.bukkit.listener.PlayerListener;
 import the.grid.smp.arte.bukkit.logger.BukkitArteLogger;
 import the.grid.smp.arte.bukkit.pack.BukkitPackManager;
 import the.grid.smp.arte.common.Arte;
@@ -28,6 +29,8 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
 
         this.command("arte", new ArteCommand(this));
         this.packManager = new BukkitPackManager(this);
+
+        this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
     }
 
     @Override

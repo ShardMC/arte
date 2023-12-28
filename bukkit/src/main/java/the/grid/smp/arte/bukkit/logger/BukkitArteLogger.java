@@ -35,8 +35,6 @@ public class BukkitArteLogger implements ArteLogger {
     @Override
     public void throwing(Throwable throwable, String... message) {
         this.error(message);
-
-        StackTraceElement element = throwable.getStackTrace()[0];
-        this.logger.throwing(element.getClassName(), element.getMethodName(), throwable);
+        throwable.printStackTrace();
     }
 }

@@ -50,17 +50,14 @@ public class PackManager {
             long total = System.currentTimeMillis();
             ArteConfig config = this.arte.config();
 
-            new Thread(() -> {
-                this.server.restart(config.getPort());
-                this.arte.logger().info("Restarted web-server! (Finished in " + (System.currentTimeMillis() - total) + "ms)");
-            }).start();
+            this.server.restart(config.getPort());
+            this.arte.logger().info("Restarted web-server! (Finished in " + (System.currentTimeMillis() - total) + "ms)");
 
             this.zipper = zipper.create(this.arte, this.root, this.output);
 
             FilterList filter = new FilterList(config.getNamespaces(), config.isWhitelist());
             this.zipper.zip(filter, config.shouldScramble(), pack -> {
                 try {
-                    this.arte.logger().info("Processing pack part", pack.getName(), "...");
                     this.server.host(pack);
                 } catch (IOException e) {
                     this.arte.logger().throwing(e, "Failed to host pack", pack.toString(), "...");

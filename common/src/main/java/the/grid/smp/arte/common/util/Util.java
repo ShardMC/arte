@@ -14,9 +14,7 @@ import java.util.UUID;
 public class Util {
 
     public static void walk(ArteLogger logger, Path path, FileVisitor function) {
-        long start = System.currentTimeMillis();
         walk(path.toFile(), function);
-        logger.info("Walk-d dir " + path + " in " + (System.currentTimeMillis() - start));
     }
 
     private static void walk(File file, FileVisitor function) {

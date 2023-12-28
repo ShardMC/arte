@@ -40,7 +40,8 @@
   ![No Forge][noforge-shield]
 </div>
 
-> **NOTE: Arte works only on Minecraft 1.20.3+**
+> [!NOTE] 
+> Arte works only on Minecraft 1.20.3+
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -81,7 +82,8 @@ and sends each one as a different server resource pack!
 > A: In 1.20.3 Mojang added a new feature that allows servers to send multiple server resource packs at a time! 
 
 Players will only re-download the parts that actually need updating, and apply other server packs.
-(Tip: Arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour).
+> [!TIP] 
+> Arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

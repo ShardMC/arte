@@ -8,7 +8,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import the.grid.smp.arte.common.Arte;
 import the.grid.smp.arte.common.config.ArteConfig;
 import the.grid.smp.arte.common.logger.ArteLogger;
-import the.grid.smp.arte.common.util.Util;
 import the.grid.smp.arte.fabric.command.ArteCommand;
 import the.grid.smp.arte.fabric.config.FabricArteConfig;
 import the.grid.smp.arte.fabric.listener.PlayerListener;
@@ -17,7 +16,6 @@ import the.grid.smp.arte.fabric.pack.FabricPackManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
 public class ArteMod implements DedicatedServerModInitializer, Arte {

@@ -14,7 +14,7 @@ public class FabricPackManager extends PackManager {
     }
 
     public void apply(ServerPlayerEntity player) {
-        this.arte.logger().info("Applying pack to player " + player.getName());
+        this.arte.logger().info("Applying pack to player " + player.getName().getString());
         Text prompt = Text.of(this.arte.config().getPrompt());
 
         for (BuiltPack pack : this.zipper.getPacks()) {

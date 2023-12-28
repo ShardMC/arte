@@ -3,12 +3,15 @@
   "id": "arte",
   "version": "${version}",
   "name": "arte",
-  "description": "",
+  "description": "A mod that optimizes big server resource packs!",
   "authors": [
     "NikSne",
     "DrTheo_"
   ],
-  "contact": {},
+  "contact": {
+    "sources": "https://github.com/ShardMC/arte",
+    "issues": "https://github.com/ShardMC/arte/issues"
+  },
   "license": "Apache v2",
   "icon": "assets/arte/icon.png",
   "environment": "server",
@@ -20,6 +23,6 @@
   "depends": {
     "fabricloader": "\u003e\u003d0.15.1",
     "fabric": "*",
-    "minecraft": "1.20.4"
+    "minecraft": ">=1.20.3"
   }
 }

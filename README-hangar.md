@@ -37,7 +37,7 @@
 
   ![Spigot][spigot-shield]
   ![Fabric][fabric-shield]
-  ![Quilt][quilt-shield]
+  ![No Forge][noforge-shield]
 </div>
 
 > **NOTE: Arte works only on Minecraft 1.20.3+**
@@ -119,9 +119,7 @@ _Download and install the mod or plugin from [Modrinth][modrinth-url], [Spigot][
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Put your resource pack source (not zipped) in the `arte/resourcepack/` folder and run `/arte reload`.
-> Note: Arte folder can be different depending on your server! If you use Fabric or Quilt, it's folder will be in server's folder.
-> If you use Spigot, then arte's folder will be located in `plugins/arte/`.
+Put your resource pack source (not zipped) in the `plugins/arte/resourcepack/` folder and run `/arte reload`.
 
 _For more examples, please refer to the [Documentation](https://thegridsmp.github.io/projects/)._
 
@@ -146,6 +144,7 @@ _For more examples, please refer to the [Documentation](https://thegridsmp.githu
 [spigot-url]: https://www.spigotmc.org/resources/arte.114150/
 [fabric-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/fabric_64h.png
 [quilt-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/quilt_64h.png
+[noforge-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/unsupported/forge_64h.png
 [polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
 [polymart-url]: https://polymart.org/resource/arte.5242
 [hangar-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/hangar_64h.png

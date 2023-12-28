@@ -105,8 +105,8 @@ Different mod-loader require different dependencies!
 ### Installation
 [![Modrinth][modrinth-shield]][modrinth-url]
 [![Hangar][hangar-shield]][hangar-url]
-[![Spigot][spigot-shield]][spigot-url]
 [![Polymart][polymart-shield]][polymart-url]
+[![Spigot][spigot-shield]][spigot-url]
 
 _Download and install the mod or plugin from [Modrinth][modrinth-versions-url], [Hangar][hangar-versions-url], [Polymart][polymart-updates-url], [Spigot][spigot-updates-url] or [GitHub Releases][github-releases-url]._
 

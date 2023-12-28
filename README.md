@@ -211,7 +211,7 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 [hangar-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/hangar_64h.png
 [hangar-url]: https://hangar.papermc.io/DrTheodor/Arte
 [discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
-[discord-url]: https://discord.gg/CvSkNeQ9uj
+[discord-url]: https://discord.gg/CqVAzakrqx
 [github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png
 [github-url]: https://github.com/TheGridSMP/arte
 [github-issues-url]: https://github.com/TheGridSMP/arte/issues

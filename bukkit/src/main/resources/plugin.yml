@@ -1,6 +1,6 @@
 name: arte
 version: '${version}'
-main: the.grid.smp.arte.bukkit.ArtePlugin
+main: io.shardmc.arte.bukkit.ArtePlugin
 api-version: '1.20'
 authors:
   - DrTheo_

@@ -3,8 +3,6 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-group = "the.grid.smp.arte"
-
 repositories {
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
 }

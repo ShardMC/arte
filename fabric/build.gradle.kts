@@ -2,8 +2,6 @@ plugins {
     id("fabric-loom") version "1.2-SNAPSHOT"
 }
 
-group = "the.grid.smp.arte"
-
 /* I don't know how to do it without having to shit project.getProperty("name") everywhere in kotlin dsl... */
 val minecraftVersion = "1.20.4"
 val yarnMappings = "1.20.4+build.3"

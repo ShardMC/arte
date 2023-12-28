@@ -1,0 +1,37 @@
+package io.shardmc.arte.common.pack.meta;
+
+import io.shardmc.arte.common.web.Hostable;
+import io.shardmc.arte.common.web.WebServer;
+import org.apache.commons.codec.binary.Hex;
+import io.shardmc.arte.common.util.Util;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.UUID;
+
+public record BuiltPack(Path path, byte[] hash, UUID uuid, boolean force) implements Hostable {
+
+    public BuiltPack(Path path, boolean force) throws IOException {
+        this(path, Util.hash(path), Util.uuid(path), force);
+    }
+
+    @Override
+    public void host(WebServer server) throws IOException {
+        server.host(this.path, this.getName());
+    }
+
+    @Override
+    public String getName() {
+        return Hex.encodeHexString(this.hash);
+    }
+
+    @Override
+    public String toString() {
+        return "BuiltPack{" +
+                "path=" + path +
+                ", hash_str=" + this.getName() +
+                ", uuid=" + uuid +
+                ", force=" + force +
+                '}';
+    }
+}

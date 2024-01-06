@@ -18,7 +18,7 @@ public class FabricPackManager extends PackManager {
         Text prompt = Text.of(this.arte.config().getPrompt());
 
         for (BuiltPack pack : this.zipper.getPacks()) {
-            player.networkHandler.sendPacket(new ResourcePackSendS2CPacket(pack.uuid(), pack.getAddress(this.server), pack.getName(), pack.force(), prompt));
+            player.networkHandler.sendPacket(new ResourcePackSendS2CPacket(pack.uuid(), pack.getAddress(this.server), pack.hash(), pack.force(), prompt));
         }
     }
 }

@@ -16,8 +16,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/ShardMC/Arte">
-    <img src="https://raw.githubusercontent.com/ShardMC/Arte/main/images/logo-upscaled.png" alt="Logo" width="96" height="96">
+  <a href="https://github.com/ShardMC/arte">
+    <img src="https://raw.githubusercontent.com/ShardMC/arte/main/images/logo-upscaled.png" alt="Logo" width="96" height="96">
   </a>
 
   <h3 align="center">Arte</h3>
@@ -25,14 +25,14 @@
   <p align="center">
     Send server resource packs in spoon-sized bites!
     <br />
-    <a href="https://shardmc.github.io/projects/Arte/about"><strong>Explore the docs »</strong></a>
+    <a href="https://shardmc.github.io/projects/arte/about"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/ShardMC/Arte">View Demo</a>
+    <a href="https://github.com/ShardMC/arte">View Demo</a>
     ·
-    <a href="https://github.com/ShardMC/Arte/issues">Report Bug</a>
+    <a href="https://github.com/ShardMC/arte/issues">Report Bug</a>
     ·
-    <a href="https://github.com/ShardMC/Arte/issues">Request Feature</a>
+    <a href="https://github.com/ShardMC/arte/issues">Request Feature</a>
   </p>
 
   ![Spigot][spigot-shield]
@@ -77,7 +77,7 @@ and sends each one as a different server resource pack!
 > A: In 1.20.3 Mojang added a new feature that allows servers to send multiple server resource packs at a time! 
 
 Players will only re-download the parts that actually need updating, and apply other server packs.
-(Tip: Arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour).
+<!--(Tip: Arte can be combined with [Resource Pack Tweaks][rptweaks-url] mod for best server resource pack behaviour).-->
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -88,6 +88,15 @@ Players will only re-download the parts that actually need updating, and apply o
 ## Getting Started
 
 To set up Arte on your server follow these steps.
+
+### Prerequisites
+
+Different mod-loader require different dependencies!
+#### On Spigot:
+* Requires nothing!
+
+#### On Paper:
+* Requires [ProtocolLib][protocol-url].
 
 ### Installation
 [![Modrinth][modrinth-shield]][modrinth-url]
@@ -100,7 +109,7 @@ _Download and install the mod or plugin from [Modrinth][modrinth-versions-url], 
 1. Start your server
 2. Open Arte's config file
 3. Set `address` to your server's public address
-4. Open the port specified in config (`1648`) or put already opened port in the `port` field in config.
+4. Open the port specified in config (`1864`) or put already opened port in the `port` field in config.
 5. Restart your server
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -135,24 +144,24 @@ _For more examples, please refer to the [Documentation](https://shardmc.github.i
 
 [rptweaks-url]: https://modrinth.com/mod/resource-pack-tweaks
 
-[spigot-url]: https://www.spigotmc.org/resources/Arte.114150/
+[protocol-url]: https://ci.dmulloy2.net/job/ProtocolLib//lastBuild/
 
 [modrinth-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/modrinth_64h.png
-[modrinth-url]: https://modrinth.com/mod/Arte
+[modrinth-url]: https://modrinth.com/plugin/arte
 [github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png
-[github-url]: https://github.com/ShardMC/Arte
+[github-url]: https://github.com/ShardMC/arte
 [polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
-[polymart-url]: https://polymart.org/resource/Arte.5242
+[polymart-url]: https://polymart.org/resource/plugin-arte.5242
 [spigot-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/spigot_64h.png
-[spigot-url]: https://www.spigotmc.org/resources/Arte.114150/
+[spigot-url]: https://www.spigotmc.org/resources/arte.114150/
 
-[modrinth-versions-url]: https://modrinth.com/mod/Arte/versions
-[hangar-versions-url]: https://hangar.papermc.io/Arte/Arte/versions
-[polymart-updates-url]: https://polymart.org/resource/Arte.5242/updates
-[spigot-updates-url]: https://www.spigotmc.org/resources/Arte.114150/updates
-[github-releases-url]: https://github.com/ShardMC/Arte/releases
+[modrinth-versions-url]: https://modrinth.com/plugin/arte/versions
+[hangar-versions-url]: https://hangar.papermc.io/arte/arte/versions
+[polymart-updates-url]: https://polymart.org/resource/arte.5242/updates
+[spigot-updates-url]: https://www.spigotmc.org/resources/arte.114150/updates
+[github-releases-url]: https://github.com/ShardMC/arte/releases
 
-[github-issues-url]: https://github.com/ShardMC/Arte/issues
+[github-issues-url]: https://github.com/ShardMC/arte/issues
 
 [discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
 [discord-url]: https://discord.gg/CqVAzakrqx

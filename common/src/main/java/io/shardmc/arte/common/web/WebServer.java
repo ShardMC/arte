@@ -50,6 +50,10 @@ public class WebServer {
         hostable.host(this);
     }
 
+    public void host(Hostable hostable, Path file) throws IOException {
+        this.host(file, hostable.getName());
+    }
+
     public void host(Path file, String path) throws IOException {
         if (!path.startsWith("/"))
             path = "/" + path;

@@ -3,6 +3,8 @@ package io.shardmc.arte.bukkit;
 import io.shardmc.arte.bukkit.config.BukkitArteConfig;
 import io.shardmc.arte.bukkit.logger.BukkitArteLogger;
 import io.shardmc.arte.bukkit.pack.BukkitPackManager;
+import io.shardmc.arte.bukkit.pack.PaperPackManager;
+import io.shardmc.arte.bukkit.pack.SpigotPackManager;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,7 +30,13 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
         this.config = new BukkitArteConfig(this);
 
         this.command("arte", new ArteCommand(this));
-        this.packManager = new BukkitPackManager(this);
+
+        try {
+            Class.forName("com.destroystokyo.paper.ParticleBuilder");
+            this.packManager = new PaperPackManager(this);
+        } catch (ClassNotFoundException e) {
+            this.packManager = new SpigotPackManager(this);
+        }
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
     }

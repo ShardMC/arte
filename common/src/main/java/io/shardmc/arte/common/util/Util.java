@@ -31,8 +31,8 @@ public class Util {
         });
     }
 
-    public static byte[] hash(Path path) throws IOException {
-        return DigestUtils.sha1(Files.newInputStream(path));
+    public static String hash(Path path) throws IOException {
+        return DigestUtils.sha1Hex(Files.newInputStream(path));
     }
 
     public static UUID uuid(String str) {

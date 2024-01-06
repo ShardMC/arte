@@ -10,6 +10,8 @@ repositories {
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.3-R0.1-SNAPSHOT")
     implementation(project(":common"))
+
+    compileOnly(files("libs/ProtocolLib.jar"))
 }
 
 tasks.shadowJar {

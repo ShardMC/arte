@@ -1,11 +1,11 @@
 package io.shardmc.arte.bukkit.pack;
 
-import org.bukkit.entity.Player;
 import io.shardmc.arte.bukkit.ArtePlugin;
 import io.shardmc.arte.common.pack.manager.PackManager;
 import io.shardmc.arte.common.pack.meta.BuiltPack;
+import org.bukkit.entity.Player;
 
-public class BukkitPackManager extends PackManager {
+public abstract class BukkitPackManager extends PackManager {
 
     public BukkitPackManager(ArtePlugin arte) {
         super(arte);
@@ -16,7 +16,9 @@ public class BukkitPackManager extends PackManager {
         String prompt = this.arte.config().getPrompt();
 
         for (BuiltPack pack : this.zipper.getPacks()) {
-            player.setResourcePack(pack.uuid(), pack.getAddress(this.server), pack.hash(), prompt, pack.force());
+            this.apply(player, pack, prompt);
         }
     }
+
+    protected abstract void apply(Player player, BuiltPack pack, String prompt);
 }

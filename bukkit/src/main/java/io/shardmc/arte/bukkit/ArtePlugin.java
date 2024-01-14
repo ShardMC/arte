@@ -2,7 +2,7 @@ package io.shardmc.arte.bukkit;
 
 import io.shardmc.arte.bukkit.config.BukkitArteConfig;
 import io.shardmc.arte.bukkit.logger.BukkitArteLogger;
-import io.shardmc.arte.bukkit.pack.BukkitPackManager;
+import io.shardmc.arte.bukkit.pack.base.BukkitPackManager;
 import io.shardmc.arte.bukkit.pack.PaperPackManager;
 import io.shardmc.arte.bukkit.pack.SpigotPackManager;
 import org.bukkit.command.PluginCommand;

@@ -1,4 +1,4 @@
-package io.shardmc.arte.common.data;
+package io.shardmc.arte.common.config.data;
 
 import io.shardmc.arte.common.pack.zipper.impl.BasicPackZipper;
 import io.shardmc.arte.common.pack.zipper.impl.CachedPackZipper;

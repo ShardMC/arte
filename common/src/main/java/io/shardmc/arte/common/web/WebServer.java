@@ -3,6 +3,8 @@ package io.shardmc.arte.common.web;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import io.shardmc.arte.common.Arte;
+import io.shardmc.arte.common.logger.ArteLogger;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,13 +14,25 @@ import java.nio.file.Path;
 
 public class WebServer {
 
+    private final ArteLogger logger;
     private final String address;
 
     private boolean enabled = false;
     private HttpServer server;
 
-    public WebServer(String address) {
+    public WebServer(ArteLogger logger, String address) {
+        this.logger = logger;
         this.address = address;
+
+        this.logger.info("Initialized web-server!");
+    }
+
+    public WebServer(Arte arte, String address) {
+        this(arte.logger(), address);
+    }
+
+    public WebServer(Arte arte) {
+        this(arte, arte.config().getAddress());
     }
 
     public void start(int port) {
@@ -58,6 +72,7 @@ public class WebServer {
         if (!path.startsWith("/"))
             path = "/" + path;
 
+        this.logger.info("Hosting", file.toString(), "at:", "'" + path + "'");
         this.server.createContext(path, new FileHandler(file));
     }
 

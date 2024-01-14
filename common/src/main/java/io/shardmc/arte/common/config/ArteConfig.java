@@ -1,25 +1,30 @@
 package io.shardmc.arte.common.config;
 
 import io.shardmc.arte.common.Arte;
-import io.shardmc.arte.common.data.PackMode;
+import io.shardmc.arte.common.config.data.PackMode;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Set;
 
-public abstract class ArteConfig {
+public abstract class ArteConfig<T> {
 
     protected final Arte arte;
     protected final Path file;
+
+    protected final ArteConfigAdapter<T> serializer;
 
     protected int port;
     protected String address;
 
     protected String prompt;
     protected PackMode mode;
+
+    protected boolean useCache;
     protected boolean scramble;
 
     protected Set<String> namespaces;
@@ -29,6 +34,8 @@ public abstract class ArteConfig {
         this.arte = arte;
         this.file = arte.getConfigFile().toPath();
 
+        this.serializer = this.serializer();
+
         if (reload)
             this.reload();
     }
@@ -37,13 +44,40 @@ public abstract class ArteConfig {
         this(arte, true);
     }
 
-    protected abstract void read();
-    protected abstract void write();
+    protected void read() {
+        this.port = this.serializer.read("port");
+        this.address = this.serializer.read("address");
 
-    protected abstract void defaults() throws IOException;
+        this.prompt = this.serializer.read("prompt");
+        this.mode = PackMode.valueOf(this.serializer.read("mode"));
 
-    protected abstract void create() throws IOException;
-    protected abstract void dump() throws IOException;
+        this.useCache = this.serializer.read("useCache");
+        this.scramble = this.serializer.read("scramble");
+
+        this.namespaces = new HashSet<>(this.serializer.readList("namespaces"));
+        this.whitelist = this.serializer.read("whitelist");
+    }
+
+    protected void write() {
+        this.serializer.write("port", this.port);
+        this.serializer.write("address", this.address);
+
+        this.serializer.write("prompt", this.prompt);
+        this.serializer.write("mode", this.mode.toString());
+
+        this.serializer.write("use-cache", this.useCache);
+        this.serializer.write("scramble", this.scramble);
+
+        this.serializer.write("namespaces", this.namespaces);
+        this.serializer.write("whitelist", this.whitelist);
+    }
+
+    protected abstract T defaults() throws IOException;
+
+    protected abstract T create() throws IOException;
+    protected abstract void dump(T r) throws IOException;
+
+    protected abstract ArteConfigAdapter<T> serializer();
 
     protected InputStream getResource(Path path) throws IOException {
         return this.arte.getResourceStream(path.getFileName().toString());
@@ -67,8 +101,9 @@ public abstract class ArteConfig {
             if (Files.notExists(this.file))
                 this.saveDefault();
 
-            this.create();
-            this.defaults();
+            this.serializer.update(this.create());
+            this.serializer.updateDefaults(this.defaults());
+
             this.read();
         } catch (IOException e) {
             this.arte.logger().throwing(e, "Failed to reload config.");
@@ -83,7 +118,7 @@ public abstract class ArteConfig {
             }
 
             this.write();
-            this.dump();
+            this.dump(this.serializer.file);
         } catch (IOException e) {
             this.arte.logger().throwing(e, "Failed to save config.");
         }
@@ -101,12 +136,16 @@ public abstract class ArteConfig {
         return mode;
     }
 
-    public boolean shouldScramble() {
-        return scramble;
-    }
-
     public String getPrompt() {
         return prompt;
+    }
+
+    public boolean shouldUseCache() {
+        return useCache;
+    }
+
+    public boolean shouldScramble() {
+        return scramble;
     }
 
     public Set<String> getNamespaces() {

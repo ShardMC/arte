@@ -2,11 +2,11 @@
   "port": 1864,
   "address": "0.0.0.0",
 
-  "scramble": true,
-  "repack-on-start": true,
-
   "mode": "BASIC",
   "prompt": "Hello! Please download the resource pack!",
+
+  "use-cache": true,
+  "scramble": true,
 
   "namespaces": [],
   "whitelist": true,

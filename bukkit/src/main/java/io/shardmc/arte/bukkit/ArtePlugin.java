@@ -22,6 +22,7 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
 
     private ArteLogger logger;
     private ArteConfig config;
+
     private BukkitPackManager packManager;
 
     @Override

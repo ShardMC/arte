@@ -24,7 +24,7 @@ public class BasicPackZipper extends PackZipper {
         try (Stream<Path> stream = Files.list(this.assets)) {
             stream.parallel().forEach(path -> {
                 List<Path> list = new ArrayList<>();
-                Util.walk(logger, path, list::add);
+                Util.walkCheap(path, list::add);
 
                 this.files.put(path.getFileName().toString(), list);
             });

@@ -10,11 +10,29 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public class Util {
 
     public static void walk(ArteLogger logger, Path path, FileVisitor function) {
         walk(path.toFile(), function);
+    }
+
+    // performance hack. minecraft doesn't allow dots in namespaces
+    public static void walkCheap(Path path, FileVisitor function) {
+        try (Stream<Path> stream = Files.list(path)) {
+            stream.forEach(file -> {
+                // this is why it's called cheap
+                if (file.getFileName().toString().contains(".")) {
+                    walkCheap(file, function);
+                    return;
+                }
+
+                function.visit(file);
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void walk(File file, FileVisitor function) {

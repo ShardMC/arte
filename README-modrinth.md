@@ -99,8 +99,15 @@ Different mod-loader require different dependencies!
 [![GitHub][github-shield]][github-url]
 [![Polymart][polymart-shield]][polymart-url]
 [![Spigot][spigot-shield]][spigot-url]
+<!--
+[![Hangar][hangar-shield]][hangar-url]
+[![GitHub][github-shield]][github-url]
+[![Polymart][polymart-shield]][polymart-url]
+[![CurseForge][curseforge-shield]][curseforge-url]
+[![Spigot][spigot-shield]][spigot-url]
+-->
 
-_Download and install the mod or plugin from [Modrinth][modrinth-versions-url], [Hangar][hangar-versions-url], [Polymart][polymart-updates-url], [Spigot][spigot-updates-url] or [GitHub Releases][github-releases-url]._
+_Download and install the mod or plugin from [Modrinth][modrinth-versions-url], [Hangar][hangar-versions-url], [Polymart][polymart-updates-url]<!--, [CurseForge][curseforge-updates-url]-->, [Spigot][spigot-updates-url] or [GitHub Releases][github-releases-url]._
 
 1. Start your server
 2. Open Arte's config file
@@ -148,12 +155,15 @@ _For more examples, please refer to the [Documentation](https://shardmc.github.i
 [hangar-url]: https://hangar.papermc.io/arte/arte
 [polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
 [polymart-url]: https://polymart.org/resource/plugin-arte.5242
+[curseforge-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/curseforge_64h.png
+[curseforge-url]: https://curseforge.com/minecraft/bukkit-plugins/arte-for-spigot
 [spigot-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/spigot_64h.png
 [spigot-url]: https://www.spigotmc.org/resources/arte.114150/
 
 [modrinth-versions-url]: https://modrinth.com/plugin/arte/versions
 [hangar-versions-url]: https://hangar.papermc.io/arte/arte/versions
 [polymart-updates-url]: https://polymart.org/resource/arte.5242/updates
+[curseforge-updates-url]: https://curseforge.com/minecraft/bukkit-plugins/arte-for-spigot/files
 [spigot-updates-url]: https://www.spigotmc.org/resources/arte.114150/updates
 [github-releases-url]: https://github.com/ShardMC/arte/releases
 

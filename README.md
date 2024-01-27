@@ -110,6 +110,7 @@ Different mod-loader require different dependencies!
 * Requires [ProtocolLib][protocol-url].
 
 ### Installation
+[![Modrinth][modrinth-shield]][modrinth-url]
 [![Hangar][hangar-shield]][hangar-url]
 [![GitHub][github-shield]][github-url]
 [![Polymart][polymart-shield]][polymart-url]

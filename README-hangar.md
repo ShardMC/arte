@@ -100,12 +100,11 @@ Different mod-loader require different dependencies!
 
 ### Installation
 [![Modrinth][modrinth-shield]][modrinth-url]
-[![Hangar][hangar-shield]][hangar-url]
 [![GitHub][github-shield]][github-url]
 [![Polymart][polymart-shield]][polymart-url]
 [![Spigot][spigot-shield]][spigot-url]
 <!--
-[![Hangar][hangar-shield]][hangar-url]
+[![Modrinth][modrinth-shield]][modrinth-url]
 [![GitHub][github-shield]][github-url]
 [![Polymart][polymart-shield]][polymart-url]
 [![CurseForge][curseforge-shield]][curseforge-url]
@@ -166,7 +165,7 @@ _For more examples, please refer to the [Documentation](https://shardmc.github.i
 [spigot-url]: https://www.spigotmc.org/resources/arte.114150/
 
 [modrinth-versions-url]: https://modrinth.com/plugin/arte/versions
-[hangar-versions-url]: https://hangar.papermc.io/arte/arte/versions
+[hangar-versions-url]: https://hangar.papermc.io/shardmc/arte/versions
 [polymart-updates-url]: https://polymart.org/resource/arte.5242/updates
 [curseforge-updates-url]: https://curseforge.com/minecraft/bukkit-plugins/arte-for-spigot/files
 [spigot-updates-url]: https://www.spigotmc.org/resources/arte.114150/updates

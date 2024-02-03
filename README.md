@@ -231,7 +231,7 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 [github-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/github_64h.png
 [github-url]: https://github.com/ShardMC/arte
 [hangar-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/hangar_64h.png
-[hangar-url]: https://hangar.papermc.io/arte/arte
+[hangar-url]: https://hangar.papermc.io/shardmc/arte
 [polymart-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/polymart_64h.png
 [polymart-url]: https://polymart.org/resource/plugin-arte.5242
 [curseforge-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/available/curseforge_64h.png
@@ -240,7 +240,7 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 [spigot-url]: https://www.spigotmc.org/resources/arte.114150/
 
 [modrinth-versions-url]: https://modrinth.com/plugin/arte/versions
-[hangar-versions-url]: https://hangar.papermc.io/arte/arte/versions
+[hangar-versions-url]: https://hangar.papermc.io/shardmc/arte/versions
 [polymart-updates-url]: https://polymart.org/resource/arte.5242/updates
 [curseforge-updates-url]: https://curseforge.com/minecraft/bukkit-plugins/arte-for-spigot/files
 [spigot-updates-url]: https://www.spigotmc.org/resources/arte.114150/updates

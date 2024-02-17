@@ -1,7 +1,7 @@
 package io.shardmc.arte.common.config;
 
 import io.shardmc.arte.common.Arte;
-import io.shardmc.arte.common.data.PackMode;
+import io.shardmc.arte.common.config.data.PackMode;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,10 +1,10 @@
 package io.shardmc.arte.bukkit.config;
 
+import io.shardmc.arte.common.config.data.PackMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import io.shardmc.arte.bukkit.ArtePlugin;
 import io.shardmc.arte.common.config.ArteConfig;
-import io.shardmc.arte.common.data.PackMode;
 
 import java.io.IOException;
 import java.util.HashSet;

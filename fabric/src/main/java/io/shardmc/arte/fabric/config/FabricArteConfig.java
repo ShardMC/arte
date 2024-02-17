@@ -1,11 +1,11 @@
 package io.shardmc.arte.fabric.config;
 
+import io.shardmc.arte.common.config.data.PackMode;
 import io.shardmc.arte.fabric.ArteMod;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import io.shardmc.arte.common.config.ArteConfig;
-import io.shardmc.arte.common.data.PackMode;
 
 import java.io.IOException;
 import java.io.InputStream;

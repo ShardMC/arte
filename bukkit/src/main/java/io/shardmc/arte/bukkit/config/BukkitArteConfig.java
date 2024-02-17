@@ -23,8 +23,10 @@ public class BukkitArteConfig extends ArteConfig {
         this.address = this.config.getString("address");
 
         this.prompt = this.config.getString("prompt");
-        this.scramble = this.config.getBoolean("scramble");
         this.mode = PackMode.valueOf(this.config.getString("mode"));
+
+        this.useCache = this.config.getBoolean("use-cache");
+        this.scramble = this.config.getBoolean("scramble");
 
         this.namespaces = new HashSet<>(this.config.getStringList("namespaces"));
         this.whitelist = this.config.getBoolean("whitelist");
@@ -36,8 +38,10 @@ public class BukkitArteConfig extends ArteConfig {
         this.config.set("address", this.address);
 
         this.config.set("prompt", this.prompt);
-        this.config.set("scramble", this.scramble);
         this.config.set("mode", this.mode.toString());
+
+        this.config.set("use-cache", this.useCache);
+        this.config.set("scramble", this.scramble);
 
         this.config.set("namespaces", this.namespaces);
         this.config.set("whitelist", this.whitelist);

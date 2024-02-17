@@ -21,6 +21,7 @@ public abstract class ArteConfig {
     protected String prompt;
     protected PackMode mode;
     protected boolean scramble;
+    protected boolean useCache;
 
     protected Set<String> namespaces;
     protected boolean whitelist;
@@ -99,6 +100,10 @@ public abstract class ArteConfig {
 
     public PackMode getMode() {
         return mode;
+    }
+
+    public boolean shouldUseCache() {
+        return useCache;
     }
 
     public boolean shouldScramble() {

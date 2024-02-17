@@ -1,4 +1,4 @@
-package io.shardmc.arte.bukkit.pack;
+package io.shardmc.arte.bukkit.pack.base;
 
 import io.shardmc.arte.bukkit.ArtePlugin;
 import io.shardmc.arte.common.pack.manager.PackManager;

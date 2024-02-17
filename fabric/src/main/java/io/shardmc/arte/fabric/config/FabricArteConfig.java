@@ -56,8 +56,10 @@ public class FabricArteConfig extends ArteConfig {
         this.read("address", (obj, s) -> this.address = obj.getString(s));
 
         this.read("prompt", (obj, s) -> this.prompt = obj.getString(s));
-        this.read("scramble", (obj, s) -> this.scramble = obj.getBoolean(s));
         this.read("mode", (obj, s) -> this.mode = obj.getEnum(PackMode.class, s));
+
+        this.read("use-cache", (obj, s) -> this.useCache = obj.getBoolean(s));
+        this.read("scramble", (obj, s) -> this.scramble = obj.getBoolean(s));
 
         this.read("namespaces", (obj, s) -> this.namespaces = FabricArteConfig.asSet(obj.getJSONArray(s)));
         this.read("whitelist", (obj, s) -> this.whitelist = obj.getBoolean(s));
@@ -69,8 +71,10 @@ public class FabricArteConfig extends ArteConfig {
         this.config.put("address", this.address);
 
         this.config.put("prompt", this.prompt);
-        this.config.put("scramble", this.scramble);
         this.config.put("mode", this.mode.toString());
+
+        this.config.put("use-cache", this.useCache);
+        this.config.put("scramble", this.scramble);
 
         this.config.put("namespaces", this.namespaces);
         this.config.put("whitelist", this.whitelist);

@@ -6,6 +6,7 @@ import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import io.shardmc.arte.bukkit.ArtePlugin;
+import io.shardmc.arte.bukkit.pack.base.BukkitPackManager;
 import io.shardmc.arte.common.pack.meta.BuiltPack;
 import org.bukkit.entity.Player;
 

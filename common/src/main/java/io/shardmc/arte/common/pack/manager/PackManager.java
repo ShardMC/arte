@@ -23,8 +23,7 @@ public class PackManager {
 
     public PackManager(Arte arte) {
         this.arte = arte;
-        this.server = new WebServer(this.arte.config().getAddress());
-        this.arte.logger().info("Initialized web-server!");
+        this.server = new WebServer(this.arte);
 
         this.root = this.arte.getDataFolder()
                 .toPath().resolve("resourcepack");
@@ -32,7 +31,9 @@ public class PackManager {
         this.output = this.arte.getDataFolder()
                 .toPath().resolve("generated");
 
-        this.reload();
+        ArteConfig config = this.arte.config();
+        this.reload(config.shouldUseCache()
+                ? PackMode.CACHED : config.getMode());
     }
 
     public void reload() {
@@ -56,6 +57,7 @@ public class PackManager {
             this.zipper = zipper.create(this.arte, this.root, this.output);
 
             FilterList filter = new FilterList(config.getNamespaces(), config.isWhitelist());
+
             this.zipper.zip(filter, config.shouldScramble(), pack -> {
                 try {
                     this.server.host(pack);

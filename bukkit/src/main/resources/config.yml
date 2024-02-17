@@ -2,8 +2,10 @@ port: 1864
 address: 0.0.0.0
 
 mode: BASIC
-scramble: true
 prompt: 'Hello! Please download the resource pack!'
+
+use-cache: true
+scramble: true
 
 # optionals. if whitelist is true, then the list represents optional packs
 namespaces: []

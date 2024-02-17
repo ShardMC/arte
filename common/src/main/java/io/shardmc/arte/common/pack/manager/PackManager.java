@@ -2,8 +2,8 @@ package io.shardmc.arte.common.pack.manager;
 
 import io.shardmc.arte.common.Arte;
 import io.shardmc.arte.common.config.ArteConfig;
-import io.shardmc.arte.common.data.FilterList;
-import io.shardmc.arte.common.data.PackMode;
+import io.shardmc.arte.common.config.data.FilterList;
+import io.shardmc.arte.common.config.data.PackMode;
 import io.shardmc.arte.common.pack.zipper.PackZipper;
 import io.shardmc.arte.common.util.lambda.PackZipperCreator;
 import io.shardmc.arte.common.web.WebServer;

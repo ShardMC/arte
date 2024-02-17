@@ -1,6 +1,6 @@
 package io.shardmc.arte.common.pack.zipper.impl;
 
-import io.shardmc.arte.common.data.FilterList;
+import io.shardmc.arte.common.config.data.FilterList;
 import io.shardmc.arte.common.logger.ArteLogger;
 import io.shardmc.arte.common.Arte;
 import io.shardmc.arte.common.pack.meta.BuiltPack;

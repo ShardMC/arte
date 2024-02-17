@@ -1,4 +1,4 @@
-package io.shardmc.arte.common.data;
+package io.shardmc.arte.common.config.data;
 
 import java.util.Set;
 

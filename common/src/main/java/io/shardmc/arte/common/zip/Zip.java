@@ -4,9 +4,7 @@ import org.apache.commons.compress.archivers.zip.ParallelScatterZipCreator;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.concurrent.ExecutionException;
 import java.util.zip.ZipEntry;
@@ -26,15 +24,19 @@ public class Zip implements AutoCloseable {
     }
 
     public void addFile(Path path) {
+        try {
+            this.addFile(path, new FileInputStream(path.toFile()));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addFile(Path path, InputStream stream) {
         ZipArchiveEntry entry = new ZipArchiveEntry(this.root.relativize(path).toString());
         entry.setMethod(ZipEntry.DEFLATED);
 
         this.scatter.addArchiveEntry(entry, () -> {
-            try {
-                return new BufferedInputStream(new FileInputStream(path.toFile()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            return new BufferedInputStream(stream);
         });
 
         if (this.scramble) {

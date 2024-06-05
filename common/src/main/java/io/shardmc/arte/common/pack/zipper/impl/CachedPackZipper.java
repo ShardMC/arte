@@ -39,10 +39,10 @@ public class CachedPackZipper extends BasicPackZipper {
             for (Namespace namespace : this.groups) {
                 pool.add(() -> {
                     try {
-                        Path generated = this.output.resolve(namespace.name() + ".zip");
+                        Path generated = this.output.resolve(namespace.path().getFileName() + ".zip");
 
                         boolean force = !(list.elements().contains(
-                                namespace.name())
+                                namespace.path().getFileName().toString())
                         ) && list.whitelist();
 
                         BuiltPack pack = new BuiltPack(generated, force);

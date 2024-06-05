@@ -25,4 +25,9 @@ public record MetaFile(Path path) implements PackFile {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Path getPath() {
+        return this.path;
+    }
 }

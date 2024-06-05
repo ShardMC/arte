@@ -5,7 +5,7 @@ import io.shardmc.arte.common.zip.Zip;
 import java.nio.file.Path;
 import java.util.Collection;
 
-public record Namespace(String name, Collection<Path> files) implements PackFile {
+public record Namespace(Path path, Collection<Path> files) implements PackFile {
 
     @Override
     public void zip(Zip zip) {
@@ -15,5 +15,10 @@ public record Namespace(String name, Collection<Path> files) implements PackFile
             else
                 zip.addFile(file);
         }
+    }
+
+    @Override
+    public Path getPath() {
+        return this.path;
     }
 }

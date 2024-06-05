@@ -94,7 +94,7 @@ public abstract class PackZipper {
         }
 
         public Context addNamespace(String name, Collection<Path> files) {
-            this.groups.add(new Namespace(name, files));
+            this.groups.add(new Namespace(this.root.resolve("assets/" + name), files));
             return this;
         }
 
@@ -103,22 +103,20 @@ public abstract class PackZipper {
             ThreadPool pool = new ThreadPool(this.logger);
 
             for (Namespace group : this.groups) {
-                String group_str = String.format("%s/assets/%s/", this.root, group.name());
                 pool.add(() -> {
                     try {
-                        Path generated = this.output.resolve(group.name() + ".zip");
+                        Path generated = this.output.resolve(group.path().getFileName() + ".zip");
                         try (Zip zip = new Zip(this.root, generated, scramble)) {
                             group.zip(zip);
 
                             for (PackFile file : this.defaults) {
-                                String[] sp = file.toString().split("/");
-                                if (!group.files().contains(Path.of(group_str + sp[sp.length - 1].replace("]", ""))))
+                                if (!group.files().contains(group.path().resolve(file.getPath().getFileName())))
                                     file.zip(zip);
                             }
                         }
 
                         boolean force = !(list.elements().contains(
-                                group.name())
+                                group.path().getFileName().toString())
                         ) && list.whitelist();
 
                         BuiltPack pack = new BuiltPack(generated, force);

@@ -10,4 +10,9 @@ public record BasicPackFile(Path path) implements PackFile {
     public void zip(Zip zip) {
         zip.addFile(this.path);
     }
+
+    @Override
+    public Path getPath() {
+        return this.path;
+    }
 }

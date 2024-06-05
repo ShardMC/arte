@@ -10,8 +10,9 @@ public record Namespace(Path root, String name, Collection<Path> files) implemen
     @Override
     public void zip(Zip zip) {
         for (Path file : this.files) {
-            if (file.getFileName().toString().equals("pack.mcmeta") || file.getFileName().toString().equals("pack.png")) {
-                zip.addFile(file, this.root.resolve(file.getFileName()));
+            String fileName = file.getFileName().toString();
+            if (fileName.equals("pack.mcmeta") || fileName.equals("pack.png")) {
+                zip.addFile(file, this.root.resolve(fileName));
             }
             else
                 zip.addFile(file);

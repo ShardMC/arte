@@ -94,7 +94,7 @@ public abstract class PackZipper {
         }
 
         public Context addNamespace(String name, Collection<Path> files) {
-            this.groups.add(new Namespace(name, files));
+            this.groups.add(new Namespace(this.root, name, files));
             return this;
         }
 
@@ -110,7 +110,8 @@ public abstract class PackZipper {
                             group.zip(zip);
 
                             for (PackFile file : this.defaults) {
-                                file.zip(zip);
+                                if (!group.files().contains(group.getPath().resolve(file.getPath().getFileName())))
+                                    file.zip(zip);
                             }
                         }
 

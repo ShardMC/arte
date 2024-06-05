@@ -103,6 +103,7 @@ public abstract class PackZipper {
             ThreadPool pool = new ThreadPool(this.logger);
 
             for (Namespace group : this.groups) {
+                String group_str = String.format("%s/assets/%s/", this.root, group.name());
                 pool.add(() -> {
                     try {
                         Path generated = this.output.resolve(group.name() + ".zip");
@@ -110,7 +111,9 @@ public abstract class PackZipper {
                             group.zip(zip);
 
                             for (PackFile file : this.defaults) {
-                                file.zip(zip);
+                                String[] sp = file.toString().split("/");
+                                if (!group.files().contains(Path.of(group_str + sp[sp.length - 1].replace("]", ""))))
+                                    file.zip(zip);
                             }
                         }
 

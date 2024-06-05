@@ -10,7 +10,10 @@ public record Namespace(String name, Collection<Path> files) implements PackFile
     @Override
     public void zip(Zip zip) {
         for (Path file : this.files) {
-            zip.addFile(file);
+            if (file.getFileName().toString().equals("pack.mcmeta") || file.getFileName().toString().equals("pack.png"))
+                zip.addFile(file, Path.of(String.format("%s/%s", file.getParent().getParent().getParent(), file.getFileName())));
+            else
+                zip.addFile(file);
         }
     }
 }

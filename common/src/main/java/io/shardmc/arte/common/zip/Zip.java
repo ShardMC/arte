@@ -27,9 +27,9 @@ public class Zip implements AutoCloseable {
         this.addFile(path, path);
     }
 
-    public void addFile(Path path, Path path_zipped) {
+    public void addFile(Path path, Path pathZipped) {
         try {
-            this.addFile(path_zipped, new FileInputStream(path.toFile()));
+            this.addFile(pathZipped, new FileInputStream(path.toFile()));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

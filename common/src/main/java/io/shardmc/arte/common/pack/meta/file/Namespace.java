@@ -11,11 +11,9 @@ public record Namespace(Path root, String name, Collection<Path> files) implemen
     public void zip(Zip zip) {
         for (Path file : this.files) {
             String fileName = file.getFileName().toString();
-            if (fileName.equals("pack.mcmeta") || fileName.equals("pack.png")) {
+            if ((fileName.equals("pack.mcmeta") || fileName.equals("pack.png")))
                 zip.addFile(file, this.root.resolve(fileName));
-            }
-            else
-                zip.addFile(file);
+            else zip.addFile(file);
         }
     }
 

@@ -1,12 +1,11 @@
 plugins {
-    id("fabric-loom") version "1.2-SNAPSHOT"
+    id("fabric-loom")
 }
 
-/* I don't know how to do it without having to shit project.getProperty("name") everywhere in kotlin dsl... */
-val minecraftVersion = "1.20.4"
-val yarnMappings = "1.20.4+build.3"
-val loaderVersion = "0.15.3"
-val apiVersion = "0.91.3+1.20.4"
+val minecraftVersion: String by project
+val yarnMappings: String by project
+val loaderVersion: String by project
+val fabricVersion: String by project
 
 dependencies {
     // To change the versions see the gradle.properties file
@@ -15,7 +14,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${loaderVersion}")
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${apiVersion}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabricVersion}")
 
     // common and its dependencies
     implementation(project(":common"))
@@ -29,17 +28,13 @@ dependencies {
 }
 
 tasks.processResources {
-    val props = mapOf("version" to rootProject.version,
-            "minecraft_version" to minecraftVersion,
-            "loader_version" to loaderVersion
-    )
-
-    inputs.properties(props)
+    inputs.property("version", project.version)
     filesMatching("fabric.mod.json") {
-        expand(props)
+        expand(getProperties())
+        expand(mutableMapOf("version" to project.version))
     }
 }
 
 tasks.withType<AbstractArchiveTask> {
-    setProperty("archiveFileName", "arte-fabric-${rootProject.version}.jar")
+    setProperty("archiveFileName", "arte-fabric-${rootProject.version}-1.20.3-1.20.4.jar")
 }

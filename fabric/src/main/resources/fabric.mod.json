@@ -10,7 +10,8 @@
   ],
   "contact": {
     "sources": "https://github.com/ShardMC/arte",
-    "issues": "https://github.com/ShardMC/arte/issues"
+    "issues": "https://github.com/ShardMC/arte/issues",
+    "homepage": "https://shardmc.github.io/projects/arte/about/"
   },
   "license": "Apache v2",
   "icon": "assets/arte/icon.png",
@@ -21,8 +22,8 @@
     ]
   },
   "depends": {
-    "fabricloader": "\u003e\u003d0.15.1",
+    "fabricloader": "\u003e\u003d${loaderVersion}",
     "fabric": "*",
-    "minecraft": ">=1.20.3"
+    "minecraft": ">=1.20.3 >=1.20.4"
   }
 }

@@ -51,6 +51,6 @@ public class FabricPackManager extends PackManager {
 
     protected enum Status {
         WORKING,
-        DONE;
+        DONE
     }
 }

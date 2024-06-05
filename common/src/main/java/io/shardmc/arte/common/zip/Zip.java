@@ -39,9 +39,7 @@ public class Zip implements AutoCloseable {
         ZipArchiveEntry entry = new ZipArchiveEntry(this.root.relativize(path).toString());
         entry.setMethod(ZipEntry.DEFLATED);
 
-        this.scatter.addArchiveEntry(entry, () -> {
-            return new BufferedInputStream(stream);
-        });
+        this.scatter.addArchiveEntry(entry, () -> new BufferedInputStream(stream));
 
         if (this.scramble) {
             Scrambler.scramble(entry);

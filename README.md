@@ -17,7 +17,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ShardMC/arte">
-    <img src="images/logo-upscaled.png" alt="Logo" width="96" height="96">
+    <img src="images/logo-upscaled.png" alt="Logo" width="480" height="480">
   </a>
 
   <h3 align="center">Arte</h3>

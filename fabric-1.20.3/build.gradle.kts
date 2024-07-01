@@ -36,5 +36,5 @@ tasks.processResources {
 }
 
 tasks.withType<AbstractArchiveTask> {
-    setProperty("archiveFileName", "arte-fabric-${rootProject.version}-1.20.5+.jar")
+    setProperty("archiveFileName", "arte-fabric-${rootProject.version}-1.20.3-1.20.4.jar")
 }

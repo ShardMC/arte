@@ -6,4 +6,4 @@ subprojects {
     }
 }
 
-version = "0.5.0-DEV"
+val version: String by project

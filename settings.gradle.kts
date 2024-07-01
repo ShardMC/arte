@@ -17,3 +17,4 @@ rootProject.name = "arte"
 include("common")
 include("bukkit")
 include("fabric")
+include("fabric-1.20.3")

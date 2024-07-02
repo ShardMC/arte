@@ -143,7 +143,7 @@ Put your resource pack source (not zipped) in the `arte/resourcepack/` folder an
 > Arte folder can be different depending on your server! If you use Fabric or Quilt, it's folder will be in server's folder.
 > If you use Spigot, then Arte's folder will be located in `plugins/arte/`
 
-_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/Arte/about)._
+_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/arte)._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -214,6 +214,8 @@ Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for mor
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[socs-url]: htps://shardmc.github.io/projects/arte
+
 [spigot-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/spigot_64h.png
 [fabric-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/supported/fabric_64h.png
 [noforge-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/unsupported/forge_64h.png

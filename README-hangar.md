@@ -128,7 +128,7 @@ _Download and install the mod or plugin from [Modrinth][modrinth-versions-url], 
 
 Put your resource pack source (not zipped) in the `plugins/arte/resourcepack/` folder and run `/arte reload`.
 
-_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/Arte/about)._
+_For more examples, please refer to the [Documentation](https://shardmc.github.io/projects/arte)._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

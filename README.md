@@ -17,7 +17,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ShardMC/arte">
-    <img src="images/logo-upscaled.png" alt="Logo" width="480" height="480">
+    <img src="https://raw.githubusercontent.com/ShardMC/arte/main/images/logo-upscaled.png" alt="Logo" width="96" height="96">
   </a>
 
   <h3 align="center">Arte</h3>
@@ -25,7 +25,7 @@
   <p align="center">
     Send server resource packs in spoon-sized bites!
     <br />
-    <a href="https://shardmc.github.io/projects/arte/about"><strong>Explore the docs »</strong></a>
+    <a href="https://shardmc.github.io/projects/arte"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/ShardMC/arte">View Demo</a>

@@ -21,7 +21,7 @@
   <p align="center">
     Send server resource packs in spoon-sized bites!
     <br />
-    <a href="https://shardmc.github.io/projects/arte/about"><strong>Explore the docs »</strong></a>
+    <a href="https://shardmc.github.io/projects/arte"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/ShardMC/arte">View Demo</a>

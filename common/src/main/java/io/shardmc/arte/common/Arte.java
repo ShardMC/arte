@@ -3,27 +3,19 @@ package io.shardmc.arte.common;
 import io.shardmc.arte.common.config.ArteConfig;
 import io.shardmc.arte.common.logger.ArteLogger;
 import io.shardmc.arte.common.pack.manager.PackManager;
+import io.shardmc.arte.common.platform.Platform;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import java.util.ServiceLoader;
+import java.util.stream.Stream;
 
 public interface Arte {
     ArteLogger logger();
     ArteConfig config();
     PackManager getPackManager();
+    Platform<?> platform();
 
-    File getDataFolder();
-    File getConfigFile();
-
-    URL getResourceUrl(String path) throws IOException;
-
-    default InputStream getResourceStream(String path) throws IOException {
-        return this.getResourceUrl(path).openStream();
-    }
-
-    default File getResourceFile(String path) throws IOException {
-        return new File(this.getResourceUrl(path).getFile());
+    default <T extends Platform<?>> Stream<T> loadPlatform(ClassLoader loader, Class<T> clazz) {
+        return ServiceLoader.load(clazz, loader).stream()
+                .map(ServiceLoader.Provider::get);
     }
 }

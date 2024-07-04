@@ -25,10 +25,10 @@ public class PackManager {
         this.arte = arte;
         this.server = new WebServer(this.arte);
 
-        this.root = this.arte.getDataFolder()
+        this.root = this.arte.platform().getDataFolder()
                 .toPath().resolve("resourcepack");
 
-        this.output = this.arte.getDataFolder()
+        this.output = this.arte.platform().getDataFolder()
                 .toPath().resolve("generated");
 
         ArteConfig config = this.arte.config();

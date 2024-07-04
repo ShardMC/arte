@@ -1,0 +1,34 @@
+apply plugin: 'fabric-loom'
+
+dependencies {
+    // To change the versions see the gradle.properties file
+    minecraft("com.mojang:minecraft:${project.minecraftVersion}")
+    mappings("net.fabricmc:yarn:${project.yarnMappings}:v2")
+    modImplementation("net.fabricmc:fabric-loader:${project.loaderVersion}")
+
+    implementation(project(path: ":fabric-common", configuration: "namedElements"))
+    common(project(":fabric-common"))
+
+    compileOnly(project(":common"))
+}
+
+processResources {
+    inputs.property("version", version)
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    setProperty("archiveFileName", "arte-fabric-${rootProject.version}-${project.minecraftVersion}.jar")
+}
+
+remapJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    addNestedDependencies = false
+
+    from {
+        configurations.common.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

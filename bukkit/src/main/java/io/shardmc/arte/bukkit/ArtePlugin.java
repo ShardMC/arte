@@ -2,9 +2,8 @@ package io.shardmc.arte.bukkit;
 
 import io.shardmc.arte.bukkit.config.BukkitArteConfig;
 import io.shardmc.arte.bukkit.logger.BukkitArteLogger;
-import io.shardmc.arte.bukkit.pack.base.BukkitPackManager;
-import io.shardmc.arte.bukkit.pack.PaperPackManager;
-import io.shardmc.arte.bukkit.pack.SpigotPackManager;
+import io.shardmc.arte.bukkit.pack.BukkitPackManager;
+import io.shardmc.arte.bukkit.platform.BukkitPlatform;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,11 +13,9 @@ import io.shardmc.arte.common.Arte;
 import io.shardmc.arte.common.config.ArteConfig;
 import io.shardmc.arte.common.logger.ArteLogger;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
 public final class ArtePlugin extends JavaPlugin implements Arte {
+
+    private BukkitPlatform platform;
 
     private ArteLogger logger;
     private ArteConfig config;
@@ -27,18 +24,14 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
 
     @Override
     public void onEnable() {
+        this.platform = BukkitPlatform.create(this);
+
         this.logger = new BukkitArteLogger(this);
         this.config = new BukkitArteConfig(this);
 
+        this.packManager = new BukkitPackManager(this);
+
         this.command("arte", new ArteCommand(this));
-
-        try {
-            Class.forName("com.destroystokyo.paper.ParticleBuilder");
-            this.packManager = new PaperPackManager(this);
-        } catch (ClassNotFoundException e) {
-            this.packManager = new SpigotPackManager(this);
-        }
-
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
     }
 
@@ -63,18 +56,12 @@ public final class ArtePlugin extends JavaPlugin implements Arte {
     }
 
     @Override
-    public File getConfigFile() {
-        return new File(this.getDataFolder(), "config.yml");
+    public BukkitPlatform platform() {
+        return this.platform;
     }
 
-    @Override
-    public URL getResourceUrl(String path) throws IOException {
-        URL url = this.getClassLoader().getResource(path);
-
-        if (url == null)
-            throw new IOException("Couldn't find the default config! The build may be corrupt! Path: " + path);
-
-        return url;
+    public ClassLoader getLoader() {
+        return super.getClassLoader();
     }
 
     private void command(String name, TabExecutor executor) {

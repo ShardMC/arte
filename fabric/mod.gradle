@@ -26,7 +26,6 @@ tasks.withType(AbstractArchiveTask).configureEach {
 
 remapJar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    addNestedDependencies = false
 
     from {
         configurations.common.collect { it.isDirectory() ? it : zipTree(it) }

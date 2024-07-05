@@ -25,6 +25,7 @@ tasks.withType(AbstractArchiveTask).configureEach {
 }
 
 remapJar {
+    dependsOn(configurations.common)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     from {

@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -9,20 +8,10 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.3-R0.1-SNAPSHOT")
-    implementation(project(":common"))
-
     compileOnly(files("libs/ProtocolLib.jar"))
-}
 
-tasks.shadowJar {
-    dependencies {
-        exclude(dependency("org.apache.commons:commons-compress:1.21"))
-        exclude(dependency("commons-codec:commons-codec:1.16.0"))
-    }
-}
-
-tasks.build {
-    dependsOn(tasks.shadowJar)
+    implementation(project(":common"))
+    common(project(":common"))
 }
 
 tasks.processResources {
@@ -36,4 +25,7 @@ tasks.processResources {
 
 tasks.withType<AbstractArchiveTask> {
     setProperty("archiveFileName", "arte-bukkit-${rootProject.version}.jar")
+
+    from(configurations.getByName("common").map { if (it.isDirectory) it else zipTree(it) })
+    duplicatesStrategy = DuplicatesStrategy.WARN
 }

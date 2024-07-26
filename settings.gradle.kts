@@ -6,15 +6,13 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
-
-    val loomVersion: String by settings
-    plugins {
-        id("fabric-loom") version loomVersion
-    }
 }
 
 rootProject.name = "arte"
 include("common")
 include("bukkit")
+include("fabric-common")
+
 include("fabric")
-include("fabric-1.20.3")
+include("fabric:1.20.5")
+include("fabric:1.20.3")

@@ -28,7 +28,7 @@ public abstract class ArteConfig {
 
     public ArteConfig(Arte arte, boolean reload) {
         this.arte = arte;
-        this.file = arte.getConfigFile().toPath();
+        this.file = arte.platform().getConfigFile().toPath();
 
         if (reload)
             this.reload();
@@ -47,11 +47,11 @@ public abstract class ArteConfig {
     protected abstract void dump() throws IOException;
 
     protected InputStream getResource(Path path) throws IOException {
-        return this.arte.getResourceStream(path.getFileName().toString());
+        return this.arte.platform().getResourceStream(path.getFileName().toString());
     }
 
     protected File getResourceFile(Path path) throws IOException {
-        return this.arte.getResourceFile(path.getFileName().toString());
+        return this.arte.platform().getResourceFile(path.getFileName().toString());
     }
 
     private void saveDefault() throws IOException {

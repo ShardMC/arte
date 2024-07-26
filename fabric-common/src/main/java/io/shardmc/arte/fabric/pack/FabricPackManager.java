@@ -1,6 +1,5 @@
 package io.shardmc.arte.fabric.pack;
 
-import io.shardmc.arte.fabric.ArteMod;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import io.shardmc.arte.common.Arte;

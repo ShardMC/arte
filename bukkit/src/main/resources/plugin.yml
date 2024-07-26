@@ -1,6 +1,6 @@
 name: arte
 version: '${version}'
-main: io.shardmc.arte.bukkit.ArtePlugin
+main: su.shardmc.arte.bukkit.ArtePlugin
 api-version: '1.20'
 softdepend: [ ProtocolLib ]
 authors:

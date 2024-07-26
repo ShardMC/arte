@@ -1,5 +1,5 @@
 subprojects {
-    group = "io.shardmc.arte"
+    group = "su.shardmc.arte"
 
     repositories {
         mavenCentral()

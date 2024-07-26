@@ -30,4 +30,4 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'bukkit/build/libs/*.jar,fabric/build/libs/*.jar,fabric-1.20.3/build/libs/*.jar'
+          artifacts: 'bukkit/build/libs/*.jar,fabric/1.20.5/build/libs/*.jar,fabric/1.20.3/build/libs/*.jar'

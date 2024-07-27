@@ -185,7 +185,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the Apache License 2.0. See [`LICENSE.md`](LICENSE.md) for more information.
+Distributed under the Apache NON-AI License 2.0. See [`LICENSE`](LICENSE) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

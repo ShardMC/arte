@@ -251,5 +251,5 @@ Distributed under the Apache NON-AI License 2.0. See [`LICENSE`](LICENSE) for mo
 [github-issues-url]: https://github.com/ShardMC/arte/issues
 
 [discord-shield]: https://raw.githubusercontent.com/intergrav/devins-badges/v3/assets/cozy/social/discord-plural_64h.png
-[discord-url]: https://discord.gg/CqVAzakrqx
+[discord-url]: https://shardmc.su/discord
 
